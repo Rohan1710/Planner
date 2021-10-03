@@ -5,12 +5,9 @@
 
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
-        android:id="@+id/action_favorite"
-        android:checkable="true"
-        android:enabled="true"
+        android:id="@+id/setting"
         android:icon="@drawable/ic_settings"
         android:title="setting"
-        android:visible="true"
         app:showAsAction="always" />
 
 </menu>
