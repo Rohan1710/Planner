@@ -6,27 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <include layout="@layout/toptoolbar"/>
 
     <ImageButton
         android:id="@+id/calenderButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="71dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/alarmButton"
-        app:layout_constraintStart_toEndOf="@+id/editTextDate"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/current_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toEndOf="@+id/current_date"
+        app:layout_constraintTop_toTopOf="@+id/current_date"
+        app:layout_constraintVertical_bias="0.489"
         app:srcCompat="@drawable/ic_calendar" />
 
-    <EditText
-        android:id="@+id/editTextDate"
+    <TextView
+        android:id="@+id/current_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:background="@color/purple_200"
-        android:ems="10"
-        android:hint="Enter date"
-        android:inputType="date"
+        android:textColor="@color/purple_500"
+        android:text="@string/app_name"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/todolistButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
