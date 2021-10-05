@@ -1,144 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <include layout="@layout/toptoolbar"/>
+    <include android:id="@+id/include" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottomnavigation"
+        android:background="@color/purple_500"
+        android:layout_alignParentBottom="true"
+       />
+
 
     <ImageButton
         android:id="@+id/calenderButton"
         android:layout_width="71dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/current_date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toEndOf="@+id/current_date"
-        app:layout_constraintTop_toTopOf="@+id/current_date"
-        app:layout_constraintVertical_bias="0.489"
-        app:srcCompat="@drawable/ic_calendar" />
+        android:layout_marginBottom="8dp" />
 
     <TextView
         android:id="@+id/current_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/purple_500"
         android:text="@string/app_name"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/todolistButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/purple_500"
+        android:textSize="25dp" />
 
-
-    <ImageButton
-        android:id="@+id/homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/hometext"
-        app:layout_constraintEnd_toStartOf="@+id/todolistButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_home" />
-
-    <ImageButton
-        android:id="@+id/todolistButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/homeButton"
-        app:layout_constraintEnd_toStartOf="@+id/notesButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/homeButton"
-        app:layout_constraintTop_toTopOf="@+id/homeButton"
-        app:srcCompat="@drawable/ic_todolist" />
-
-
-    <TextView
-        android:id="@+id/hometext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="HOME"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/todolist"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/todolist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TO-DO List"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/notes"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/hometext"
-        app:layout_constraintTop_toTopOf="@+id/hometext" />
-
-
-    <ImageButton
-        android:id="@+id/notesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/todolistButton"
-        android:contentDescription="TODO"
-        app:layout_constraintEnd_toStartOf="@+id/alarmButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/todolistButton"
-        app:layout_constraintTop_toTopOf="@+id/todolistButton"
-        app:srcCompat="@drawable/ic_note" />
-
-
-    <TextView
-        android:id="@+id/notes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NOTES"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/alarm"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/todolist"
-        app:layout_constraintTop_toTopOf="@+id/todolist" />
-
-    <ImageButton
-        android:id="@+id/alarmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/notesButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/notesButton"
-        app:layout_constraintTop_toTopOf="@+id/notesButton"
-        app:srcCompat="@drawable/ic_alarm" />
-
-    <TextView
-        android:id="@+id/alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ALARM"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/notes"
-        app:layout_constraintTop_toTopOf="@+id/notes" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/alarmButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="40dp"
-        app:srcCompat="@drawable/ic_add" />
+        app:maxImageSize="40dp" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
 
 
