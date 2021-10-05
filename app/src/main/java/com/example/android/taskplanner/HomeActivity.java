@@ -21,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
     TextView textView;
     BottomNavigationView bottomNavigation;
+    public FloatingActionButton addTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-    }
-    FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.add_task);
-    public void addTask(FloatingActionButton floatingActionButton){
-        Intent intent = new Intent(this, AddTask.class);
-        startActivity(intent);
+        addTask = findViewById(R.id.add_task);
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,AddTask.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
