@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="10dp"
-        app:menu="@menu/bottomnavigation"></com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/bottomnavigation" />
 
     <ImageButton
         android:id="@+id/calenderButton"
@@ -39,7 +39,7 @@
         android:textSize="25dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/add_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
@@ -49,7 +49,8 @@
         android:clickable="true"
         android:src="@drawable/ic_add"
         app:maxImageSize="40dp"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:onClick="addTask"/>
 
 </RelativeLayout>
 

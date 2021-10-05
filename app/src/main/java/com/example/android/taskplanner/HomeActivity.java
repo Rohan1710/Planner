@@ -2,9 +2,15 @@ package com.example.android.taskplanner;
 
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,5 +55,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+    FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.add_task);
+    public void addTask(FloatingActionButton floatingActionButton){
+        Intent intent = new Intent(this, AddTask.class);
+        startActivity(intent);
     }
 }
