@@ -1,22 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    android:layout_width="match_parent">
 
-    <EditText
-        android:id="@+id/editTextDate"
+    <include
+        android:id="@+id/include"
+        layout="@layout/toptoolbar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        app:menu="@menu/bottomnavigation" />
+
+    <ImageButton
+        android:id="@+id/calenderButton"
+        android:layout_width="71dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@+id/current_date"
+        android:src="@drawable/ic_calendar" />
+
+
+    <TextView
+        android:id="@+id/current_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
-        android:ems="10"
-        android:hint="Enter date"
-        android:background="@color/purple_200"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="642dp"
+        android:text="@string/app_name"
+        android:textColor="@color/purple_500"
+        android:textSize="25dp" />
 
-</android.support.constraint.ConstraintLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="0dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add"
+        app:maxImageSize="40dp"
+        tools:ignore="ContentDescription"
+        android:onClick="addTask"/>
+
+</RelativeLayout>
+
+
