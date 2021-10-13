@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskPlanner">
         <activity
+            android:name=".todo_list"
+            android:exported="true" />
+        <activity
             android:name=".AddTask"
             android:exported="true" />
         <activity
