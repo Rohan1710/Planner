@@ -8,4 +8,6 @@
     <string name="time">Time</string>
     <string name="title">Title</string>
     <string name="details">Details</string>
+    <string name="input">Enter your input</string>
+    <string name="todo">Todo List</string>
 </resources>
