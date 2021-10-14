@@ -10,6 +10,7 @@
         layout="@layout/todo_toolbar" />
 
     <ListView
+        android:id="@+id/myList"
         android:layout_width="409dp"
         android:layout_height="673dp"
         android:layout_marginTop="1dp"

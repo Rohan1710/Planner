@@ -10,6 +10,7 @@ import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_YE
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
@@ -38,10 +39,14 @@ import java.util.List;
 public class AddTask extends AppCompatActivity {
 
     private static final String TAG = "MainActivityJAVA";
+    Button addTask;
     private EditText input;
     private TextView output;
-    Button addTask;
     private EntityExtractor entityExtractor;
+
+    private static EntityExtractionParams getEntityExtractionParams(String input) {
+        return new EntityExtractionParams.Builder(input).build();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +100,8 @@ public class AddTask extends AppCompatActivity {
                                     output.append("\n");
                                 }
                             }
+                            addtolist(output);
                         });
-    }
-
-    private static EntityExtractionParams getEntityExtractionParams(String input) {
-        return new EntityExtractionParams.Builder(input).build();
     }
 
     private void displayEntityInfo(String annotatedText, Entity entity) {
@@ -256,5 +258,12 @@ public class AddTask extends AppCompatActivity {
                         moneyEntity.getUnnormalizedCurrency(),
                         moneyEntity.getIntegerPart(),
                         moneyEntity.getFractionalPart()));
+    }
+
+    public void addtolist(TextView newOutput){
+        String value = newOutput.getText().toString();
+        Intent intent = new Intent(this, todo_list.class);
+        intent.putExtra("key",value);
+        startActivity(intent);
     }
 }
