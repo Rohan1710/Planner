@@ -100,7 +100,7 @@ public class AddTask extends AppCompatActivity {
                                     output.append("\n");
                                 }
                             }
-                            addtolist(output);
+                            String text = output.getText().toString();
                         });
     }
 
@@ -260,10 +260,10 @@ public class AddTask extends AppCompatActivity {
                         moneyEntity.getFractionalPart()));
     }
 
-    public void addtolist(TextView newOutput){
-        String value = newOutput.getText().toString();
-        Intent intent = new Intent(this, todo_list.class);
-        intent.putExtra("key",value);
-        startActivity(intent);
-    }
+//    public void addtolist(TextView newOutput){
+//        String value = newOutput.getText().toString();
+//        Intent intent = new Intent(this, todo_list.class);
+//        intent.putExtra("key",value);
+//        startActivity(intent);
+//    }
 }
