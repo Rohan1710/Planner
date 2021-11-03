@@ -8,9 +8,9 @@
     <string name="time">Time</string>
     <string name="title">Title</string>
     <string name="details">Details</string>
-    <string name="input">Enter your input</string>
+    <string name="input">Enter your task details</string>
     <string name="todo">Todo List</string>
-    <string name="empty_input">Please enter a text.</string>
+    <string name="empty_input">Please enter task details</string>
     <string name="wait_message">Working…\nMake sure network is on for the first time to download model</string>
     <string name="entity_extraction_error">Annotation failed.</string>
     <string name="entities_detected">Entities detected:</string>
