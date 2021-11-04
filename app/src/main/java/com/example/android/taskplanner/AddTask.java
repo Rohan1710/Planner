@@ -100,6 +100,7 @@ public class AddTask extends AppCompatActivity {
                                     output.append("\n");
                                 }
                             }
+                            output.append(input);
                             String text = output.getText().toString();
                         });
     }
