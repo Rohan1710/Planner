@@ -1,10 +1,15 @@
 package com.example.android.taskplanner;
 
 import androidx.annotation.NonNull;
+
+import com.example.android.taskplanner.Adapter.TodoAdapter;
+import com.example.android.taskplanner.Model.TodoModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,13 +20,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     TextView textView;
     BottomNavigationView bottomNavigation;
     public FloatingActionButton addTask;
+    public RecyclerView taskRecyclerView;
+    private TodoAdapter taskAdapter;
+
+    private List<TodoModel> taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,5 +77,23 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        taskList = new ArrayList<>();
+
+        taskRecyclerView = findViewById(R.id.taskRecyclerView);
+        taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        taskAdapter = new TodoAdapter(this);
+        taskRecyclerView.setAdapter(taskAdapter);
+
+        TodoModel task = new TodoModel();
+        task.setTask("This is a test task");
+        task.setStatus(0);
+        task.setId(1);
+
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+
+        taskAdapter.setTasks(taskList);
     }
 }
