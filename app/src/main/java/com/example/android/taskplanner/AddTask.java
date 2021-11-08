@@ -8,6 +8,7 @@ import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_SE
 import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_WEEK;
 import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_YEAR;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +45,7 @@ public class AddTask extends AppCompatActivity {
     private EditText input;
     private TextView output;
     private EntityExtractor entityExtractor;
+    private CalendarView calendarView;
 
     private static EntityExtractionParams getEntityExtractionParams(String input) {
         return new EntityExtractionParams.Builder(input).build();
@@ -61,6 +64,7 @@ public class AddTask extends AppCompatActivity {
         input = findViewById(R.id.text_input);
         output = findViewById(R.id.output);
         addTask = findViewById(R.id.add_button);
+        calendarView = findViewById(R.id.calenderView);
 
         addTask.setOnClickListener(
                 v -> {
@@ -71,6 +75,13 @@ public class AddTask extends AppCompatActivity {
                     }
                     extractEntities(newInput);
                 });
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+
+            }
+        });
     }
 
     public void extractEntities(final String input) {
@@ -260,11 +271,11 @@ public class AddTask extends AppCompatActivity {
                         moneyEntity.getIntegerPart(),
                         moneyEntity.getFractionalPart()));
     }
-
-//    public void addtolist(TextView newOutput){
-//        String value = newOutput.getText().toString();
-//        Intent intent = new Intent(this, todo_list.class);
-//        intent.putExtra("key",value);
-//        startActivity(intent);
-//    }
+/*
+    public void addtolist(TextView newOutput){
+        String value = newOutput.getText().toString();
+        Intent intent = new Intent(this, todo_list.class);
+        intent.putExtra("key",value);
+        startActivity(intent);
+    }*/
 }
