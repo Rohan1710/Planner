@@ -97,7 +97,7 @@ public class AddTask extends AppCompatActivity {
                         })
                 .addOnSuccessListener(
                         result -> {
-                            if (result.isEmpty()) {
+                           /* if (result.isEmpty()) {
                                 output.setText(getString(R.string.no_entity_detected));
                                 return;
                             }
@@ -112,7 +112,8 @@ public class AddTask extends AppCompatActivity {
                                 }
                             }
                             output.append(input);
-                            String text = output.getText().toString();
+                            String text = output.getText().toString();*/
+                            Toast.makeText(this, "Task Added", Toast.LENGTH_SHORT).show();
                         });
     }
 
