@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.taskplanner.Data.MyDBHandler;
+import com.example.android.taskplanner.Model.TodoModel;
 import com.google.mlkit.nl.entityextraction.DateTimeEntity;
 import com.google.mlkit.nl.entityextraction.Entity;
 import com.google.mlkit.nl.entityextraction.EntityAnnotation;
@@ -35,6 +37,7 @@ import com.google.mlkit.nl.entityextraction.PaymentCardEntity;
 import com.google.mlkit.nl.entityextraction.TrackingNumberEntity;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -82,6 +85,10 @@ public class AddTask extends AppCompatActivity {
 
             }
         });
+
+
+
+
     }
 
     public void extractEntities(final String input) {
@@ -97,8 +104,23 @@ public class AddTask extends AppCompatActivity {
                         })
                 .addOnSuccessListener(
                         result -> {
-                           /* if (result.isEmpty()) {
-                                output.setText(getString(R.string.no_entity_detected));
+
+                            MyDBHandler db = new MyDBHandler(AddTask.this);
+                            TodoModel task = new TodoModel();
+                            task.setTask(input);
+                            task.setStatus(0);
+
+                            if (result.isEmpty()) {
+
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                String date = sdf.format(new Date());
+
+//                                task.setId(1);
+                                task.setDdate(date);
+//                                output.setText(getString(R.string.no_entity_detected));
+                                output.append("Task Added and entities not detected");
+
+                                db.addTask(task);
                                 return;
                             }
                             output.setText(getString(R.string.entities_detected));
@@ -107,17 +129,25 @@ public class AddTask extends AppCompatActivity {
                                 List<Entity> entities = entityAnnotation.getEntities();
                                 String annotatedText = entityAnnotation.getAnnotatedText();
                                 for (Entity entity : entities) {
-                                    displayEntityInfo(annotatedText, entity);
+//                                    displayEntityInfo(annotatedText, entity);
                                     output.append("\n");
+                                    if(entity.getType() == Entity.TYPE_DATE_TIME){
+                                        String tmp = String.valueOf(DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG)
+                                                .format(new Date(entity.asDateTimeEntity().getTimestampMillis())));
+                                        task.setDdate(tmp);
+                                        output.append(tmp);
+                                    }
                                 }
+
                             }
-                            output.append(input);
-                            String text = output.getText().toString();*/
-                            Toast.makeText(this, "Task Added", Toast.LENGTH_SHORT).show();
+
+                            db.addTask(task);
+                            output.append("\nTask Added and entities detected");
+
                         });
     }
 
-    private void displayEntityInfo(String annotatedText, Entity entity) {
+    /*private void displayEntityInfo(String annotatedText, Entity entity) {
         switch (entity.getType()) {
             case Entity.TYPE_ADDRESS:
                 displayAddressInfo(annotatedText);
@@ -156,9 +186,9 @@ public class AddTask extends AppCompatActivity {
                 displayDefaultInfo(annotatedText);
                 break;
         }
-    }
+    }*/
 
-    private String convertGranularityToString(Entity entity) {
+    /*private String convertGranularityToString(Entity entity) {
         DateTimeEntity dateTimeEntity = entity.asDateTimeEntity();
         @DateTimeEntity.DateTimeGranularity int granularity = dateTimeEntity.getDateTimeGranularity();
         switch (granularity) {
@@ -179,9 +209,9 @@ public class AddTask extends AppCompatActivity {
             default:
                 return getString(R.string.granularity_unknown);
         }
-    }
+    }*/
 
-
+/*
     private void displayAddressInfo(String annotatedText) {
         output.append(getString(R.string.address_entity_info, annotatedText));
     }
@@ -204,9 +234,9 @@ public class AddTask extends AppCompatActivity {
 
     private void displayUrlInfo(String annotatedText) {
         output.append(getString(R.string.url_entity_info, annotatedText));
-    }
+    }*/
 
-    private void displayDateTimeInfo(Entity entity, String annotatedText) {
+   /* private void displayDateTimeInfo(Entity entity, String annotatedText) {
         output.append(
                 getString(
                         R.string.date_time_entity_info,
@@ -214,9 +244,9 @@ public class AddTask extends AppCompatActivity {
                         DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG)
                                 .format(new Date(entity.asDateTimeEntity().getTimestampMillis())),
                         convertGranularityToString(entity)));
-    }
+    }*/
 
-
+/*
     private void displayTrackingNoInfo(Entity entity, String annotatedText) {
         TrackingNumberEntity trackingNumberEntity = entity.asTrackingNumberEntity();
         output.append(
@@ -271,7 +301,7 @@ public class AddTask extends AppCompatActivity {
                         moneyEntity.getUnnormalizedCurrency(),
                         moneyEntity.getIntegerPart(),
                         moneyEntity.getFractionalPart()));
-    }
+    }*/
 /*
     public void addtolist(TextView newOutput){
         String value = newOutput.getText().toString();

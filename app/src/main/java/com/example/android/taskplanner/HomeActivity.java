@@ -87,26 +87,26 @@ public class HomeActivity<task> extends AppCompatActivity {
         taskRecyclerView.setAdapter(taskAdapter);
 
         TodoModel task = new TodoModel();
-        task.setTask("This is a test task");
-        task.setStatus(0);
-        task.setId(1);
-        task.setDdate("22/10/21");
 
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
 
-        taskAdapter.setTasks(taskList);
+
+//        taskList.add(task);
+//        taskList.add(task);
+//        taskList.add(task);
+
+
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
         db.addTask(task);
 
-        //get all contact
+        //get all task
         List<TodoModel> allTask = db.getAllTasks();
-   /*     for(TodoModel todo : allTask){
-            Log.d("dbTask","taSKS");
-        }*/
+        for(TodoModel todo : allTask){
+            task.setTask("This is a test task");
+            task.setStatus(0);
+            taskList.add(task);
+        }
+        taskAdapter.setTasks(taskList);
         Log.d("dbTask","You have" + db.getCount());
 
     }
