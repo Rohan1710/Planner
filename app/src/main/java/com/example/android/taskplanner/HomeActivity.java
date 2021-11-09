@@ -3,6 +3,7 @@ package com.example.android.taskplanner;
 import androidx.annotation.NonNull;
 
 import com.example.android.taskplanner.Adapter.TodoAdapter;
+import com.example.android.taskplanner.Data.MyDBHandler;
 import com.example.android.taskplanner.Model.TodoModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity<task> extends AppCompatActivity {
 
     TextView textView;
     BottomNavigationView bottomNavigation;
@@ -88,6 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         task.setTask("This is a test task");
         task.setStatus(0);
         task.setId(1);
+        task.setDdate("22/10/21");
 
         taskList.add(task);
         taskList.add(task);
@@ -95,5 +98,16 @@ public class HomeActivity extends AppCompatActivity {
         taskList.add(task);
 
         taskAdapter.setTasks(taskList);
+
+        MyDBHandler db = new MyDBHandler(HomeActivity.this);
+        db.addTask(task);
+
+        //get all contact
+        List<TodoModel> allTask = db.getAllTasks();
+   /*     for(TodoModel todo : allTask){
+            Log.d("dbTask","taSKS");
+        }*/
+        Log.d("dbTask","You have" + db.getCount());
+
     }
 }

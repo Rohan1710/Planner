@@ -2,8 +2,7 @@ package com.example.android.taskplanner.Model;
 
 public class TodoModel {
     private int id, status;
-    private String task;
-
+    private String task, ddate;
     public int getId() {
         return id;
     }
@@ -26,5 +25,13 @@ public class TodoModel {
 
     public void setTask(String task) {
         this.task = task;
+    }
+
+    public String getDdate() {
+        return ddate;
+    }
+
+    public void setDdate(String ddate) {
+        this.ddate = ddate;
     }
 }
