@@ -97,14 +97,16 @@ public class HomeActivity<task> extends AppCompatActivity {
 
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
+        task.setTask("This is a test task");
+        task.setStatus(0);
+        task.setId(1);
+        taskList.add(task);
         db.addTask(task);
 
         //get all task
         List<TodoModel> allTask = db.getAllTasks();
         for(TodoModel todo : allTask){
-            task.setTask("This is a test task");
-            task.setStatus(0);
-            taskList.add(task);
+
         }
         taskAdapter.setTasks(taskList);
         Log.d("dbTask","You have" + db.getCount());
