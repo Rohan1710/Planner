@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -24,6 +25,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         String create = "CREATE TABLE " + Params.TABLE_NAME + "("
                 + Params.KEY_ID + " INTEGER PRIMARY KEY, " + Params.KEY_TASK
                 + " TEXT, " + Params.KEY_DATE + "TEXT" + Params.KEY_STATUS + "INTEGER" + ")";
+        Log.d("dbrohan","query being run is "+ create);
         db.execSQL(create);
     }
 
@@ -38,9 +40,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(Params.KEY_TASK, todoModel.getTask());
         values.put(Params.KEY_DATE, todoModel.getDdate());
-        values.put(String.valueOf(Params.KEY_STATUS), todoModel.getStatus());
+//        values.put(Params.KEY_STATUS, todoModel.getStatus());
 
         db.insert(Params.TABLE_NAME, null, values);
+        Log.d("dbrohan","Successfully inserted ");
+
         db.close();
     }
 

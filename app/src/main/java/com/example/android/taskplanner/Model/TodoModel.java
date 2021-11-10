@@ -3,6 +3,25 @@ package com.example.android.taskplanner.Model;
 public class TodoModel {
     private int id, status;
     private String task, ddate;
+
+    public TodoModel(int id, int status, String task, String ddate) {
+        this.id = id;
+        this.status = status;
+        this.task = task;
+        this.ddate = ddate;
+    }
+
+    public TodoModel(int status, String task, String ddate) {
+        this.status = status;
+        this.task = task;
+        this.ddate = ddate;
+    }
+
+    public TodoModel() {
+
+    }
+
+
     public int getId() {
         return id;
     }

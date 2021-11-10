@@ -86,7 +86,7 @@ public class HomeActivity<task> extends AppCompatActivity {
         taskAdapter = new TodoAdapter(this);
         taskRecyclerView.setAdapter(taskAdapter);
 
-        TodoModel task = new TodoModel();
+
 
 
 
@@ -97,6 +97,7 @@ public class HomeActivity<task> extends AppCompatActivity {
 
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
+        TodoModel task = new TodoModel();
         task.setTask("This is a test task");
         task.setStatus(0);
         task.setId(1);
