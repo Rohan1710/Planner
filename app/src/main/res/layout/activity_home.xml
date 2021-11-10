@@ -120,6 +120,17 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/current_date"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="98dp"
+        android:nestedScrollingEnabled="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_task"
         android:layout_width="wrap_content"

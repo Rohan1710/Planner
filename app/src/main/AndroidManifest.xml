@@ -10,19 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskPlanner">
         <activity
-            android:name=".ToDoList"
-            android:exported="true" />
-        <activity
             android:name=".AddTask"
             android:exported="true" />
         <activity
             android:name=".HomeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".RegisterUser"
-            android:exported="true" />
-        <activity
-            android:name=".forgotPassword"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
