@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        textView = findViewById(R.id.current_date);
+        textView = findViewById(R.id.homePageDate);
 
         Calendar calender = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, MMM d");
