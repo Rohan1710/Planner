@@ -122,8 +122,9 @@ public class AddTask extends AppCompatActivity {
 //                                output.setText(getString(R.string.no_entity_detected));
                                 output.append("Task Added and entities not detected");
                                 rohan.setDdate(date);
-                                db.addTask(rohan);
-                                return;
+//                                db.addTask(rohan);
+//                                Intent intent = new Intent(AddTask.this,HomeActivity.class);
+//                                startActivity(intent);
                             }
                             output.setText(getString(R.string.entities_detected));
                             output.append("\n");
@@ -143,6 +144,9 @@ public class AddTask extends AppCompatActivity {
                             }
                             db.addTask(rohan);
                             output.append("\nTask Added and entities detected");
+                            Toast.makeText(this, "Task Added", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AddTask.this,HomeActivity.class);
+                            startActivity(intent);
 
                         });
     }
