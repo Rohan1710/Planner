@@ -74,6 +74,18 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return taskList;
     }
 
+    public int updateTask(TodoModel todoModel){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Params.KEY_TASK, todoModel.getTask());
+        values.put(Params.KEY_DATE, todoModel.getDdate());
+        values.put(Params.KEY_STATUS, todoModel.getStatus());
+
+        return db.update(Params.TABLE_NAME, values, Params.KEY_ID + "=?",
+                            new String[]{String.valueOf(todoModel.getId())});
+    }
+
     public void deleteTaskByID(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Params.TABLE_NAME,Params.KEY_ID+"=?", new String[]{String.valueOf(id)});

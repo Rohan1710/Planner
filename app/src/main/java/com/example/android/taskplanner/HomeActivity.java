@@ -97,14 +97,6 @@ public class HomeActivity<task> extends AppCompatActivity {
 
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
-//        TodoModel rohan = new TodoModel();
-//        rohan.setTask("This is another test task");
-//        rohan.setDdate("22/2/21");
-//        rohan.setStatus(0);
-//        rohan.setId(2);
-//        db.addTask(rohan);
-
-        //get all task
         List<TodoModel> allTask = db.getAllTasks();
         for(TodoModel todo : allTask){
             Log.d("dbrohan","Task ID: " + todo.getId() + "\n" +
