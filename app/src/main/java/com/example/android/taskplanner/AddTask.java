@@ -105,10 +105,10 @@ public class AddTask extends AppCompatActivity {
                 .addOnSuccessListener(
                         result -> {
 
-                            MyDBHandler db = new MyDBHandler(AddTask.this);
-                            TodoModel task = new TodoModel();
-                            task.setTask(input);
-                            task.setStatus(0);
+//                            MyDBHandler db = new MyDBHandler(AddTask.this);
+//                            TodoModel task = new TodoModel();
+//                            task.setTask(input);
+//                            task.setStatus(0);
 
                             if (result.isEmpty()) {
 
@@ -116,11 +116,11 @@ public class AddTask extends AppCompatActivity {
                                 String date = sdf.format(new Date());
 
 //                                task.setId(1);
-                                task.setDdate(date);
+//                                task.setDdate(date);
 //                                output.setText(getString(R.string.no_entity_detected));
                                 output.append("Task Added and entities not detected");
 
-                                db.addTask(task);
+//                                db.addTask(task);
                                 return;
                             }
                             output.setText(getString(R.string.entities_detected));
@@ -134,14 +134,14 @@ public class AddTask extends AppCompatActivity {
                                     if(entity.getType() == Entity.TYPE_DATE_TIME){
                                         String tmp = String.valueOf(DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG)
                                                 .format(new Date(entity.asDateTimeEntity().getTimestampMillis())));
-                                        task.setDdate(tmp);
+//                                        task.setDdate(tmp);
                                         output.append(tmp);
                                     }
                                 }
 
                             }
 
-                            db.addTask(task);
+//                            db.addTask(task);
                             output.append("\nTask Added and entities detected");
 
                         });

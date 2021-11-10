@@ -22,16 +22,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create = "CREATE TABLE " + Params.TABLE_NAME + "("
-                + Params.KEY_ID + " INTEGER PRIMARY KEY, " + Params.KEY_TASK
-                + " TEXT, " + Params.KEY_DATE + "TEXT" + Params.KEY_STATUS + "INTEGER" + ")";
+        String create = " CREATE TABLE " + Params.TABLE_NAME + " (" +
+                Params.KEY_ID + " INTEGER PRIMARY KEY, " +
+                Params.KEY_TASK + " TEXT NOT NULL, " +
+                Params.KEY_DATE + " TEXT NOT NULL, " +
+                Params.KEY_STATUS + " INTEGER NOT NULL);";
+
         Log.d("dbrohan","query being run is "+ create);
         db.execSQL(create);
+
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        String tmp = "drop Table if exists " + Params.TABLE_NAME;
+        db.execSQL(tmp);
     }
 
     public void addTask(TodoModel todoModel){
@@ -40,7 +45,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(Params.KEY_TASK, todoModel.getTask());
         values.put(Params.KEY_DATE, todoModel.getDdate());
-//        values.put(Params.KEY_STATUS, todoModel.getStatus());
+        values.put(String.valueOf(Params.KEY_STATUS), todoModel.getStatus());
 
         db.insert(Params.TABLE_NAME, null, values);
         Log.d("dbrohan","Successfully inserted ");

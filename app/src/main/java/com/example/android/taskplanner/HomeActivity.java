@@ -97,20 +97,23 @@ public class HomeActivity<task> extends AppCompatActivity {
 
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
-        TodoModel task = new TodoModel();
-        task.setTask("This is a test task");
-        task.setStatus(0);
-        task.setId(1);
-        taskList.add(task);
-        db.addTask(task);
+        TodoModel rohan = new TodoModel();
+        rohan.setTask("This is a test task");
+        rohan.setDdate("22/2/21");
+        rohan.setStatus(0);
+        rohan.setId(1);
+//        task.setStatus(0);
+//        task.setId(1);
+//        taskList.add(task);
+        db.addTask(rohan);
 
         //get all task
-        List<TodoModel> allTask = db.getAllTasks();
-        for(TodoModel todo : allTask){
-
-        }
+//        List<TodoModel> allTask = db.getAllTasks();
+//        for(TodoModel todo : allTask){
+//
+//        }
         taskAdapter.setTasks(taskList);
-        Log.d("dbTask","You have" + db.getCount());
+//        Log.d("dbTask","You have" + db.getCount());
 
     }
 }
