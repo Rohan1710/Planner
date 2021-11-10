@@ -1,10 +1,14 @@
 package com.example.android.taskplanner;
 
 import androidx.annotation.NonNull;
+
+import com.example.android.taskplanner.Adapter.TodoAdapter;
+import com.example.android.taskplanner.Model.TodoModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,12 +20,17 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     TextView textView;
     BottomNavigationView bottomNavigation;
     public FloatingActionButton addTask;
+    public RecyclerView taskRecyclerView;
+    private TodoAdapter taskAdapter;
+
+    private List<TodoModel> taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
