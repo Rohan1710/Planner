@@ -37,6 +37,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         String tmp = "drop Table if exists " + Params.TABLE_NAME;
         db.execSQL(tmp);
+        onCreate(db);
     }
 
     public void addTask(TodoModel todoModel){

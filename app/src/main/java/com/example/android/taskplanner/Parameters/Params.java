@@ -8,7 +8,7 @@ public class Params {
     public static final String KEY_ID = "id";
     public static final String KEY_TASK = "task";
     public static final String KEY_DATE = "ddate";
-    public static final int KEY_STATUS = 0;
+    public static final String KEY_STATUS = "status";
 
 
 }
