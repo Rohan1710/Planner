@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private TodoAdapter taskAdapter;
 
     private List<TodoModel> taskList;
+    public CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,10 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        calendarView = findViewById(R.id.calenderView);
+
+
 
 
         taskList = new ArrayList<>();
