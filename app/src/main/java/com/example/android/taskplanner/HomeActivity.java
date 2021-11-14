@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private List<TodoModel> taskList;
     public CalendarView calendarView;
+    private MyDBHandler db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +86,15 @@ public class HomeActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.calenderView);
 
 
+        db = new MyDBHandler(this);
+        db.openDatabase();
 
 
         taskList = new ArrayList<>();
 
         taskRecyclerView = findViewById(R.id.taskRecyclerView);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter = new TodoAdapter(this);
+        taskAdapter = new TodoAdapter(db,HomeActivity.this);
         taskRecyclerView.setAdapter(taskAdapter);
 
 
@@ -113,6 +118,8 @@ public class HomeActivity extends AppCompatActivity {
         }
         taskAdapter.setTasks(taskList);
 //        Log.d("dbTask","You have" + db.getCount());
+
+
 
 
     }

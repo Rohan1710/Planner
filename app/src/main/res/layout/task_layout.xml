@@ -21,6 +21,22 @@
             android:buttonTint="@color/darkBlue"
             android:paddingStart="8dp"
             tool:text="This is just sample" />
+
+        <ImageView
+            android:id="@+id/deletetaskicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_delete"
+            android:layout_alignParentRight="true"
+            android:padding="4dp" />
+
+        <TextView
+            android:id="@+id/TaskID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
     </RelativeLayout>
+
+
 
 </androidx.cardview.widget.CardView>

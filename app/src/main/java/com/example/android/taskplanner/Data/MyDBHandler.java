@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyDBHandler extends SQLiteOpenHelper {
+
+    private SQLiteDatabase db;
+
     public MyDBHandler(Context context) {
         super(context, Params.DB_NAME, null, Params.DB_VERSION);
     }
@@ -38,6 +41,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
         String tmp = "drop Table if exists " + Params.TABLE_NAME;
         db.execSQL(tmp);
         onCreate(db);
+    }
+
+    public void openDatabase() {
+        db = this.getWritableDatabase();
     }
 
     public void addTask(TodoModel todoModel){
