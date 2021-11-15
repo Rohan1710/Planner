@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.example.android.taskplanner.Adapter.TodoAdapter;
 import com.example.android.taskplanner.Data.MyDBHandler;
 import com.example.android.taskplanner.Model.TodoModel;
+import com.example.android.taskplanner.Model.taskModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -35,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     public RecyclerView taskRecyclerView;
     private TodoAdapter taskAdapter;
 
-    private List<TodoModel> taskList;
+    private List<taskModel> taskList;
     public CalendarView calendarView;
 
     @Override
@@ -60,12 +61,16 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     case R.id.home:
                         Toast.makeText(HomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.todolist:
                         Toast.makeText(HomeActivity.this, "todo list", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.notes:
                         Toast.makeText(HomeActivity.this, "Notes", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.alarm:
                         Toast.makeText(HomeActivity.this, "alarm", Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 return true;
             }
@@ -88,10 +93,9 @@ public class HomeActivity extends AppCompatActivity {
         taskList = new ArrayList<>();
 
         taskRecyclerView = findViewById(R.id.taskRecyclerView);
-        taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter = new TodoAdapter(this);
-        taskRecyclerView.setAdapter(taskAdapter);
-
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        taskRecyclerView.setLayoutManager(manager);
+        taskRecyclerView.setHasFixedSize(true);
 
 
 
@@ -103,17 +107,14 @@ public class HomeActivity extends AppCompatActivity {
 
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
-        List<TodoModel> allTask = db.getAllTasks();
-        for(TodoModel todo : allTask){
-            Log.d("dbrohan","Task ID: " + todo.getId() + "\n" +
-                    "Task: " + todo.getTask() + "\n" +
-                    "Date: " + todo.getDdate() + "\n" +
-                    "Status: " + todo.getStatus() + "\n" );
+        List<taskModel> allTask = db.getAllTasks();
+        Toast.makeText(this,"Tasks are " + allTask.size(),Toast.LENGTH_SHORT).show();
+        for(taskModel todo : allTask){
             taskList.add(todo);
         }
-        taskAdapter.setTasks(taskList);
-//        Log.d("dbTask","You have" + db.getCount());
-
+        taskAdapter = new TodoAdapter(taskList,HomeActivity.this);
+        if(taskList.size()>=1)
+            taskRecyclerView.setAdapter(taskAdapter);
 
     }
 }

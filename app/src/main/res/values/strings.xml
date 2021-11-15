@@ -6,6 +6,13 @@
     <string name="add_task">Add Task</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
+    <string-array name="numbers">
+        <item>Do not repeat</item>
+        <item>Every 15 minutes</item>
+        <item>Every 30 minutes</item>
+        <item>Every 1 Hour</item>
+        <item>Every Day</item>
+    </string-array>
     <string name="title">Title</string>
     <string name="details">Details</string>
     <string name="input">Enter your task details</string>
@@ -63,4 +70,6 @@
     <string name="email_entity_info">Email entity detected: %1$s.\n</string>
     <!-- String of info to be displayed for an unknown type entity -->
     <string name="unknown_entity_info">Unknown entity detected: %1$s.\n</string>
+    <string name="forget_password"> <u>FORGOT PASSWORD?</u> </string>
+    <string name="register_text"> <b><u>REGISTER</u></b></string>
 </resources>
