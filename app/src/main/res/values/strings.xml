@@ -63,4 +63,5 @@
     <string name="email_entity_info">Email entity detected: %1$s.\n</string>
     <!-- String of info to be displayed for an unknown type entity -->
     <string name="unknown_entity_info">Unknown entity detected: %1$s.\n</string>
+    <string name="register_main"> <u>Register</u></string>
 </resources>
