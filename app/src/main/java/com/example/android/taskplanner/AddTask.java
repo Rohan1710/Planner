@@ -49,6 +49,7 @@ public class AddTask extends AppCompatActivity {
     private TextView output;
     private EntityExtractor entityExtractor;
     private CalendarView calendarView;
+    int number = 0;
 
     private static EntityExtractionParams getEntityExtractionParams(String input) {
         return new EntityExtractionParams.Builder(input).build();
