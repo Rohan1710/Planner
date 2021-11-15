@@ -71,5 +71,5 @@
     <!-- String of info to be displayed for an unknown type entity -->
     <string name="unknown_entity_info">Unknown entity detected: %1$s.\n</string>
     <string name="forget_password"> <u>FORGOT PASSWORD?</u> </string>
-    <string name="register_text"> <b><u>REGISTER</u></b></string>
+    <string name="register_main"><u>Register</u> </string>
 </resources>
