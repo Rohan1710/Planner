@@ -40,6 +40,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         holder.task.setText(item.getTask());
         holder.task.setChecked(toBoolean(item.getStatus()));
         holder.task.setId(item.getId());
+//        holder.deleteiocon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                db.deleteTaskByID(item.getId());
+////                (activity).finish();
+////                activity.startActivity(activity.getIntent());
+//                Log.d("dbrohan","deleted Task : " + item.getId());
+//            }
+//        });
     }
 
     public int getItemCount(){
@@ -72,12 +81,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
             task = view.findViewById(R.id.todoCheckbox);
             deleteiocon = view.findViewById(R.id.deletetaskicon);
             taskID = view.findViewById(R.id.TaskID);
-            deleteiocon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("dbrohan","task deleted");
-                }
-            });
         }
     }
 
