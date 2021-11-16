@@ -24,6 +24,7 @@ public class myAlarm extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         int id = intent.getIntExtra("id", 0);
         String task = intent.getStringExtra("task");
+        Toast.makeText(context,"Task Title: "+task,1).show();
         int day = intent.getIntExtra("day", 0);
         int month = intent.getIntExtra("month", 0);
         int year = intent.getIntExtra("year", 0);
@@ -33,7 +34,7 @@ public class myAlarm extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"foxandroid")
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle(task)
-                .setContentText(task)
+                .setContentText(hour+":"+minute)
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
@@ -60,43 +61,47 @@ public class myAlarm extends BroadcastReceiver {
             intent1.putExtra("Status",status);
             long time = (long)status;
             time *= 1000;
-            task += "check";
-            if(day> 0 && day<28){
-                day +=1;
-            }
-            if(day == 28){
-                if(month == 1){
-                    if((year%400 == 0)||(year%100 == 0)||(year%4 == 0)){
-                        day = 29;
-                    }
-                    else
+            if(status == 86400) {
+                if (day > 0 && day < 28) {
+                    day += 1;
+                }
+                if (day == 28) {
+                    if (month == 1) {
+                        if ((year % 400 == 0) || (year % 100 == 0) || (year % 4 == 0)) {
+                            day = 29;
+                        } else
+                            day = 1;
+                        month = 2;
+                    } else
+                        day += 1;
+                }
+                if (day == 29) {
+                    if (month == 1) {
                         day = 1;
-                    month = 2;
+                        month = 2;
+                    } else {
+                        day++;
+                    }
                 }
-                else
-                    day+=1;
-            }
-            if(day == 29){
-                if(month == 1){
+                if (day == 31) {
                     day = 1;
-                    month = 2;
+                    if (month == 11) {
+                        year++;
+                        month = 0;
+                    } else
+                        month += 1;
                 }
-                else{
-                    day++;
+            }else{
+                minute += (status/60);
+                if(minute>=60)
+                {
+                    minute -= 60;
+                    hour++;
                 }
-            }
-            if(day == 31){
-                day = 1;
-                if(month == 11){
-                    year++;
-                    month = 0;
-                }
-                else
-                    month+=1;
             }
             db.UpdateUserData(id,task,year,month+1,day,hour,minute,status);
-            Toast.makeText(context,"Date: " + day +"/"+(month+1) + "/" + year,Toast.LENGTH_SHORT).show();
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent1, 0);
+            //Toast.makeText(context,"Date: " + day +"/"+(month+1) + "/" + year,Toast.LENGTH_SHORT).show();
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, pendingIntent);
         }

@@ -1,109 +1,106 @@
 package com.example.android.taskplanner;
 
-import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_DAY;
-import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_HOUR;
-import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_MINUTE;
-import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_MONTH;
-import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_SECOND;
-import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_WEEK;
-import static com.google.mlkit.nl.entityextraction.DateTimeEntity.GRANULARITY_YEAR;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
+import androidx.room.Update;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.android.taskplanner.Data.MyDBHandler;
-import com.example.android.taskplanner.Model.TodoModel;
-import com.google.mlkit.nl.entityextraction.DateTimeEntity;
-import com.google.mlkit.nl.entityextraction.Entity;
-import com.google.mlkit.nl.entityextraction.EntityAnnotation;
-import com.google.mlkit.nl.entityextraction.EntityExtraction;
-import com.google.mlkit.nl.entityextraction.EntityExtractionParams;
-import com.google.mlkit.nl.entityextraction.EntityExtractor;
-import com.google.mlkit.nl.entityextraction.EntityExtractorOptions;
-import com.google.mlkit.nl.entityextraction.FlightNumberEntity;
-import com.google.mlkit.nl.entityextraction.IbanEntity;
-import com.google.mlkit.nl.entityextraction.MoneyEntity;
-import com.google.mlkit.nl.entityextraction.PaymentCardEntity;
-import com.google.mlkit.nl.entityextraction.TrackingNumberEntity;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-public class AddTask extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class UpdateTask extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final String TAG = "MainActivityJAVA";
-    Button addTask;
-    private EditText input;
-    private TextView output;
-    private EntityExtractor entityExtractor;
-    EditText taskDate, taskTime;
+    EditText updateTitle,updateDate,updateTime;
+    Button updateButton;
     Spinner taskRepeat;
-    int tyear, tmonth, tday, thour, tminute;
+    int tyear,tmonth,tday,thour,tminute;
     int status = 1;
-
-    private static EntityExtractionParams getEntityExtractionParams(String input) {
-        return new EntityExtractionParams.Builder(input).build();
-    }
-
+    int id;
+    String date,time,title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_task);
-        createNotificationChannel();
-        entityExtractor =
-                EntityExtraction.getClient(
-                        new EntityExtractorOptions.Builder(EntityExtractorOptions.ENGLISH)
-                                .build());
-
-        input = findViewById(R.id.text_input);
-        output = findViewById(R.id.output);
-        addTask = findViewById(R.id.add_button);
-        taskDate = findViewById(R.id.TaskDate);
-        taskTime = findViewById(R.id.TaskTime);
-        taskRepeat = findViewById(R.id.TaskRepeat);
+        setContentView(R.layout.activity_update_task);
+        updateTitle = findViewById(R.id.UpdateTitle);
+        updateDate = findViewById(R.id.UpdateDate);
+        updateTime = findViewById(R.id.UpdateTime);
+        updateButton = findViewById(R.id.UpdateButton);
+        taskRepeat = findViewById(R.id.UpdateRepeat);
+        String val = getIntent().getStringExtra("id");
+        id = Integer.parseInt(val);
+        date = getIntent().getStringExtra("date");
+        time = getIntent().getStringExtra("time");
+        title = getIntent().getStringExtra("title");
+        updateDate.setText(date);
+        updateTime.setText(time);
+        updateTitle.setText(title);
+        String cday,cmonth,cyear,chour,cminute;
+        cday = cmonth = cyear = chour = cminute = "";
+        int cnt = 0;
+        for(int i = 0;i<date.length();i++){
+            if(date.charAt(i) == '/'){
+                cnt++;
+                continue;
+            }
+            if(cnt == 0){
+                cday += date.charAt(i);
+            }
+            else if(cnt == 1){
+                cmonth += date.charAt(i);
+            }
+            else
+                cyear += date.charAt(i);
+        }
+        cnt = 0;
+        for(int i = 0;i<time.length();i++){
+            if(time.charAt(i) == ':'){
+                cnt++;
+                continue;
+            }
+            if(cnt == 0){
+                chour += time.charAt(i);
+            }
+            else
+                cminute += time.charAt(i);
+        }
+        tday =Integer.parseInt(cday);
+        tmonth = Integer.parseInt(cmonth);
+        tyear = Integer.parseInt(cyear);
+        thour = Integer.parseInt(chour);
+        tminute = Integer.parseInt(cminute);
+        tmonth -= 1;
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        MyDBHandler db = new MyDBHandler(AddTask.this);
-        taskDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        MyDBHandler db = new MyDBHandler(UpdateTask.this);
+        updateDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
                     DatePickerDialog datePickerDialog = new DatePickerDialog(
-                            AddTask.this, new DatePickerDialog.OnDateSetListener() {
+                            UpdateTask.this, new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int day) {
                             tyear = year;
@@ -111,7 +108,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                             tday = day;
                             month = month + 1;
                             String date = day + "/" + month + "/" + year;
-                            taskDate.setText(date);
+                            updateDate.setText(date);
                         }
                     }, year, month, day);
                     datePickerDialog.show();
@@ -120,12 +117,12 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                 }
             }
         });
-        taskTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        updateTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
                     TimePickerDialog timePickerDialog = new TimePickerDialog(
-                            AddTask.this,
+                            UpdateTask.this,
                             android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                             new TimePickerDialog.OnTimeSetListener() {
                                 @Override
@@ -137,7 +134,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                                     try {
                                         Date date = fdate.parse(time);
                                         SimpleDateFormat f12hour = new SimpleDateFormat("hh:mm aa");
-                                        taskTime.setText(f12hour.format(date));
+                                        updateTime.setText(f12hour.format(date));
                                     } catch (ParseException e) {
                                         e.printStackTrace();
                                     }
@@ -156,8 +153,8 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.numbers,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         taskRepeat.setAdapter(adapter);
-        taskRepeat.setOnItemSelectedListener(this);
-        input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        taskRepeat.setOnItemSelectedListener(UpdateTask.this);
+        updateTitle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (!b) {
@@ -165,54 +162,43 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                 }
             }
         });
-        addTask.setOnClickListener(new View.OnClickListener() {
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 calendar.set(tyear,tmonth,tday,thour,tminute,0);
                 if (validate()) {
                     if(System.currentTimeMillis()<calendar.getTimeInMillis()) {
-                        String task = input.getText().toString();
-                        long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status);
+                        String task = updateTitle.getText().toString();
+                        db.UpdateUserData(id,task,tyear,tmonth+1,tday,thour,tminute,status);
                         if (id != -1) {
                             int intentId = (int) id;
-                            Toast.makeText(AddTask.this, "value" + year + "/" + month + "/" + day, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(AddTask.this, "value" + year + "/" + month + "/" + day, Toast.LENGTH_LONG).show();
                             setAlarm(calendar.getTimeInMillis(), intentId);
-                            Toast.makeText(AddTask.this, "New Task Added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateTask.this, "Task Updated", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(UpdateTask.this,HomeActivity.class);
+                            startActivity(intent);
                         } else {
-                            Toast.makeText(AddTask.this, "Some Error Occured!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateTask.this, "Some Error Occured!", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else{
-                        Toast.makeText(AddTask.this,"Check Date And Time Again",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateTask.this,"Check Date And Time Again",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
     }
 
-    private void createNotificationChannel() {
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
-            CharSequence name = "foxandroidReminderChannel";
-            String description = "Channel for Alarm Manager";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("foxandroid",name,importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-
     public boolean validate() {
-        if (input.getText().toString().isEmpty()) {
+        if (updateTitle.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please Enter the Task", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (taskDate.getText().toString().isEmpty()) {
+        if (updateDate.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please Enter the Date", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (taskTime.getText().toString().isEmpty()) {
+        if (updateTime.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please Enter the Task", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -220,22 +206,20 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
     }
     private void setAlarm(long timeInMillis,int id) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        //Toast.makeText(AddTask.this,"Alarm is Set " + status,Toast.LENGTH_SHORT).show();
+        // Toast.makeText(AddTask.this,"Alarm is Set " + status,Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,myAlarm.class);
         intent.putExtra("id",id);
-        intent.putExtra("task",input.getText().toString());
+        intent.putExtra("task",updateTitle.getText().toString());
         intent.putExtra("day",tday);
         intent.putExtra("month",tmonth);
         intent.putExtra("year",tyear);
         intent.putExtra("hour",thour);
         intent.putExtra("minute",tminute);
         intent.putExtra("Status",status);
-        //Toast.makeText(AddTask.this,"Task Title: "+input.getText().toString(),1).show();
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,id,intent,PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);
         //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,timeInMillis-15000,AlarmManager.INTERVAL_DAY,pendingIntent);
     }
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if(i == 1)
@@ -248,7 +232,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
             status = 86400;
         if(i == 0)
             status = 1;
-        Toast.makeText(this,"The Status is " + status,Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

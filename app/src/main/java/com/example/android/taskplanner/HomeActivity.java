@@ -14,19 +14,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -35,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
     public FloatingActionButton addTask;
     public RecyclerView taskRecyclerView;
     private TodoAdapter taskAdapter;
-
     private List<taskModel> taskList;
     public CalendarView calendarView;
 
@@ -45,11 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         textView = findViewById(R.id.homePageDate);
-
         Calendar calender = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, MMM d");
-        String dateformate = simpleDateFormat.format(calender.getTime());
-        textView.setText(dateformate);
+        String  simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        textView.setText(simpleDateFormat);
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
@@ -84,10 +86,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         calendarView = findViewById(R.id.calenderView);
-
-
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                String date = i2 + "/" + (i1+1) + "/"+ i;
+                //Toast.makeText(HomeActivity.this,date,Toast.LENGTH_SHORT).show();
+                taskAdapter.getFilter().filter(date);
+            }
+        });
 
 
         taskList = new ArrayList<>();
@@ -115,6 +122,6 @@ public class HomeActivity extends AppCompatActivity {
         taskAdapter = new TodoAdapter(taskList,HomeActivity.this);
         if(taskList.size()>=1)
             taskRecyclerView.setAdapter(taskAdapter);
-
+        taskAdapter.getFilter().filter(simpleDateFormat);
     }
 }
