@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskPlanner">
         <activity
+            android:name=".UpdateTask"
+            android:exported="true" />
+        <activity
             android:name=".AddTask"
             android:exported="true" />
         <activity
@@ -30,10 +33,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".myAlarm"
+
+        <receiver
+            android:name=".myAlarm"
             android:enabled="true"
-            android:exported="true"
-            />
+            android:exported="true" />
     </application>
 
 </manifest>
