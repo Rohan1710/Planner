@@ -15,36 +15,47 @@
         android:padding="8dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="100dp"
             android:orientation="vertical">
+
             <TextView
+                android:id="@+id/TaskTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/TaskTitle"
-                android:text="This is Just a Sample"
-                android:textColor="#000000"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"></TextView>
+                android:text="This is Just a Sample"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"></TextView>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/taskDate"
-                    android:text="Date"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="5dp"></TextView>
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/taskTime"
-                    android:text="Time"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="20dp"></TextView>
+                    android:text="Date"
+                    android:textColor="@color/colorPrimary"></TextView>
+
+                <TextView
+                    android:id="@+id/taskTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Time"
+                    android:textColor="@color/colorPrimary"></TextView>
             </LinearLayout>
 
         </LinearLayout>
@@ -52,11 +63,13 @@
 
         <ImageView
             android:id="@+id/deletetaskicon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:padding="4dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="4dp"
+            android:src="@drawable/icon_delete" />
 
         <TextView
             android:id="@+id/TaskID"

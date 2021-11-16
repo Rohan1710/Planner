@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <View
@@ -19,10 +19,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="17dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
+        android:contentDescription="clock"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/top_view"
         app:srcCompat="@drawable/clock" />
@@ -50,7 +51,10 @@
         android:hint="Email Address"
         android:inputType="textEmailAddress"
         android:padding="15dp"
-        android:textSize="24dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textCursorDrawable="@null"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wave_view" />
@@ -60,7 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_bg"
         android:drawableStart="@drawable/ic_password"
@@ -69,7 +73,10 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="15dp"
-        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textCursorDrawable="@null"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
@@ -79,29 +86,31 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_bg"
+        android:padding="15dp"
         android:text="Login"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         android:text="Forgot Password?"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -135,9 +144,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="24dp"
-        android:text="Don't have an account?"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="30dp"
+        android:text="New User?"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -145,12 +154,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/app_name"
+        android:id="@+id/app_name_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="52dp"
-        android:text="Task Planner"
+        android:layout_marginTop="50dp"
+        android:text="task planner"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
@@ -161,19 +170,18 @@
         app:layout_constraintTop_toTopOf="@+id/top_view" />
 
     <TextView
-        android:id="@+id/plan_your_day"
+        android:id="@+id/plan_your_day_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="plan your day"
+        android:text="Plan your day"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
+        app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/app_name" />
+        app:layout_constraintTop_toBottomOf="@+id/app_name_login" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

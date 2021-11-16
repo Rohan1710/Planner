@@ -15,29 +15,29 @@
         app:menu="@menu/bottomnavigation" />
 
     <LinearLayout
+        android:id="@+id/calender"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/calender"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/homePageDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:text="Date"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="10dp">
+            app:cardCornerRadius="4dp"
+            app:cardElevation="10dp">
 
             <CalendarView
                 android:id="@+id/calenderView"
@@ -49,9 +49,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/taskRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="157dp"
-            android:layout_marginTop="20dp" />
+            android:layout_height="172dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp" />
     </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_task"
         android:layout_width="wrap_content"
@@ -61,10 +64,10 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="0dp"
         android:clickable="true"
+        android:onClick="addTask"
         android:src="@drawable/ic_add"
         app:maxImageSize="40dp"
-        tools:ignore="ContentDescription"
-        android:onClick="addTask"/>
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </RelativeLayout>
 
