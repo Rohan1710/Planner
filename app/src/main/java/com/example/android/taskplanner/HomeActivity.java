@@ -115,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
         List<taskModel> allTask = db.getAllTasks();
-        Toast.makeText(this,"Tasks are " + allTask.size(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Tasks are " + allTask.size(),Toast.LENGTH_SHORT).show();
         for(taskModel todo : allTask){
             taskList.add(todo);
         }

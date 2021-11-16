@@ -24,7 +24,7 @@ public class myAlarm extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         int id = intent.getIntExtra("id", 0);
         String task = intent.getStringExtra("task");
-        Toast.makeText(context,"Task Title: "+task,1).show();
+        //Toast.makeText(context,"Task Title: "+task,1).show();
         int day = intent.getIntExtra("day", 0);
         int month = intent.getIntExtra("month", 0);
         int year = intent.getIntExtra("year", 0);
@@ -42,11 +42,11 @@ public class myAlarm extends BroadcastReceiver {
         notificationManagerCompat.notify(id,builder.build());
         MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
         mediaPlayer.start();
-        Toast.makeText(context,"Alarm ringed "+status,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"Alarm ringed "+status,Toast.LENGTH_SHORT).show();
         if(status == 1){
             MyDBHandler db = new MyDBHandler(context);
             boolean value = db.DeleteUserData(id);
-            Toast.makeText(context,"Task Deleted " + value,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Task Deleted " + value,Toast.LENGTH_SHORT).show();
         }
         else {
             MyDBHandler db = new MyDBHandler(context);

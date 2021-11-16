@@ -175,7 +175,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                         long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status);
                         if (id != -1) {
                             int intentId = (int) id;
-                            Toast.makeText(AddTask.this, "value" + year + "/" + month + "/" + day, Toast.LENGTH_LONG).show();
+                           // Toast.makeText(AddTask.this, "value" + year + "/" + month + "/" + day, Toast.LENGTH_LONG).show();
                             setAlarm(calendar.getTimeInMillis(), intentId);
                             Toast.makeText(AddTask.this, "New Task Added", Toast.LENGTH_SHORT).show();
                         } else {
@@ -248,7 +248,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
             status = 86400;
         if(i == 0)
             status = 1;
-        Toast.makeText(this,"The Status is " + status,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"The Status is " + status,Toast.LENGTH_SHORT).show();
     }
 
     @Override
