@@ -75,4 +75,7 @@
     <string name="register_user"><u>REGISTER</u></string>
     <string name="login_register"><u>Login</u></string>
     <string name="change_password_forget"><u>CHANGE PASSWORD</u></string>
+    <string name="add_task_activity"><u>ADD TASK</u></string>
+    <string name="update_task_activity"><u>UPDATE TASK</u></string>
+    <string name="welcome_login"><u>WELCOME</u></string>
 </resources>

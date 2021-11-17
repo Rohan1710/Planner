@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
@@ -19,41 +18,70 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="Update Task"
-            android:textColor="#000000"
-            android:textSize="40sp"></TextView>
+            android:layout_marginTop="150dp"
+            android:fontFamily="serif"
+            android:text="@string/update_task_activity"
+            android:textColor="@color/colorPrimary"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck"></TextView>
 
         <EditText
             android:id="@+id/UpdateTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_task"
+            android:drawablePadding="15dp"
             android:freezesText="true"
             android:hint="Enter Task"
             android:inputType="text"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/UpdateDate"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Enter Date"></EditText>
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_date"
+            android:drawablePadding="15dp"
+            android:hint="Enter Date"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="20sp"></EditText>
 
         <EditText
             android:id="@+id/UpdateTime"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:hint="Enter Time"></EditText>
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_time"
+            android:drawablePadding="15dp"
+            android:hint="Enter Time"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="20sp"></EditText>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -62,7 +90,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:text="Repeat"
-                android:textColor="@color/black">
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -70,20 +100,23 @@
                 android:id="@+id/UpdateRepeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:text="Repeat Daily"
-                tools:ignore="TouchTargetSizeCheck"></Spinner>
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></Spinner>
         </LinearLayout>
 
         <Button
             android:id="@+id/UpdateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="@color/blue"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_bg"
             android:text="Update"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/output"
