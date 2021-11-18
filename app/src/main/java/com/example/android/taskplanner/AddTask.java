@@ -169,9 +169,15 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View view) {
                 calendar.set(tyear,tmonth,tday,thour,tminute,0);
+                String task = input.getText().toString();
+                if(task.isEmpty()) {
+                    Toast.makeText(AddTask.this, R.string.empty_input, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                extractEntities(task);
+//
                 if (validate()) {
                     if(System.currentTimeMillis()<calendar.getTimeInMillis()) {
-                        String task = input.getText().toString();
                         long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status);
                         if (id != -1) {
                             int intentId = (int) id;
@@ -188,6 +194,41 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                 }
             }
         });
+    }
+
+    public void extractEntities(final String input) {
+        entityExtractor
+                .downloadModelIfNeeded()
+                .onSuccessTask(ignored -> entityExtractor.annotate(getEntityExtractionParams(input)))
+                .addOnFailureListener(
+                        e -> {
+                            Log.e(TAG, "Annotation failed", e);
+                            output.setText(getString(R.string.entity_extraction_error));
+                        })
+                .addOnSuccessListener(
+                        result -> {
+                            if (result.isEmpty()) {
+
+                            }
+                            for (EntityAnnotation entityAnnotation : result) {
+                                List<Entity> entities = entityAnnotation.getEntities();
+                                String annotatedText = entityAnnotation.getAnnotatedText();
+                                for (Entity entity : entities) {
+//                                    displayEntityInfo(annotatedText, entity);
+                                    output.append("\n");
+                                    if(entity.getType() == Entity.TYPE_DATE_TIME){
+                                        String tm_date = String.valueOf(DateFormat.getDateInstance(DateFormat.SHORT)
+                                                .format(new Date(entity.asDateTimeEntity().getTimestampMillis())));
+                                        String tm_time = String.valueOf(DateFormat.getTimeInstance(DateFormat.SHORT)
+                                                .format(new Date(entity.asDateTimeEntity().getTimestampMillis())));
+                                        taskDate.setText(tm_date);
+                                        taskTime.setText(tm_time);
+//                                        output.append(tmp);
+//                                        Log.d("Rohan","Output : " +tmp);
+                                    }
+                                }
+                            }
+                        });
     }
 
     private void createNotificationChannel() {
