@@ -51,14 +51,6 @@ public class myAlarm extends BroadcastReceiver {
         else {
             MyDBHandler db = new MyDBHandler(context);
             Intent intent1 = new Intent(context, myAlarm.class);
-            intent1.putExtra("id",id);
-            intent1.putExtra("task",task);
-            intent1.putExtra("day",day);
-            intent1.putExtra("month",month);
-            intent1.putExtra("year",year);
-            intent1.putExtra("hour",hour);
-            intent1.putExtra("minute",minute);
-            intent1.putExtra("Status",status);
             long time = (long)status;
             time *= 1000;
             if(status == 86400) {
@@ -97,13 +89,55 @@ public class myAlarm extends BroadcastReceiver {
                 {
                     minute -= 60;
                     hour++;
+                    if(hour == 24){
+                        hour = 0;
+                        if (day > 0 && day < 28) {
+                            day += 1;
+                        }
+                        if (day == 28) {
+                            if (month == 1) {
+                                if ((year % 400 == 0) || (year % 100 == 0) || (year % 4 == 0)) {
+                                    day = 29;
+                                } else
+                                    day = 1;
+                                month = 2;
+                            } else
+                                day += 1;
+                        }
+                        if (day == 29) {
+                            if (month == 1) {
+                                day = 1;
+                                month = 2;
+                            } else {
+                                day++;
+                            }
+                        }
+                        if (day == 31) {
+                            day = 1;
+                            if (month == 11) {
+                                year++;
+                                month = 0;
+                            } else
+                                month += 1;
+                        }
+                    }
                 }
             }
+            intent1.putExtra("id",id);
+            intent1.putExtra("task",task);
+            intent1.putExtra("day",day);
+            intent1.putExtra("month",month);
+            intent1.putExtra("year",year);
+            intent1.putExtra("hour",hour);
+            intent1.putExtra("minute",minute);
+            intent1.putExtra("Status",status);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year,month,day,hour,minute,0);
             db.UpdateUserData(id,task,year,month+1,day,hour,minute,status);
             //Toast.makeText(context,"Date: " + day +"/"+(month+1) + "/" + year,Toast.LENGTH_SHORT).show();
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, pendingIntent);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         }
     }
 }
