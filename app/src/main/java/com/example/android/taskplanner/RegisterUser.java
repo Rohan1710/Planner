@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView banner,registerUser;
+    private TextView registerUser;
     private EditText editTextFullName,editTextAge,editTextEmail,editTextPassword;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -30,8 +30,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
         mAuth = FirebaseAuth.getInstance();
-        banner = (TextView) findViewById(R.id.banner);
-        banner.setOnClickListener(this);
         registerUser = (Button) findViewById(R.id.registerUser);
         registerUser.setOnClickListener(this);
         editTextFullName = (EditText) findViewById(R.id.fullName);
@@ -44,9 +42,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.banner:
-                startActivity(new Intent(this,MainActivity.class));
-                break;
             case R.id.registerUser:
                 registerUser();
                 break;

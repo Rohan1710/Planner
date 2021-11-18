@@ -13,67 +13,113 @@
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Task"
             android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:fontFamily="serif"
+            android:text="@string/add_task_activity"
+            android:textColor="@color/colorPrimary"
             android:textSize="40sp"
-            android:textColor="#000000"
-            android:layout_marginTop="10dp"></TextView>
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck"></TextView>
 
         <EditText
             android:id="@+id/text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_task"
+            android:drawablePadding="15dp"
             android:freezesText="true"
             android:hint="Enter Task"
             android:inputType="text"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"/>
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@null"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/TaskDate"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:hint="Enter Date"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"></EditText>
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_date"
+            android:drawablePadding="15dp"
+            android:hint="Enter Date"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@null"
+            android:textSize="20sp"></EditText>
+
         <EditText
             android:id="@+id/TaskTime"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:hint="Enter Time"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"></EditText>
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_time"
+            android:drawablePadding="15dp"
+            android:hint="Enter Time"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@null"
+            android:textSize="20sp"></EditText>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:text="Repeat"
-                android:textColor="@color/black">
+                android:text="Repeat:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold">
 
             </TextView>
+
             <Spinner
                 android:id="@+id/TaskRepeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:text="Repeat Daily"
-                android:layout_marginTop = "20dp"
-                android:layout_marginLeft="20dp"></Spinner>
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></Spinner>
         </LinearLayout>
+
         <Button
             android:id="@+id/add_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="@color/blue"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_bg"
+            android:padding="15dp"
             android:text="@string/add_task"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/output"
@@ -81,5 +127,6 @@
             android:layout_height="wrap_content"
             android:freezesText="true"
             android:singleLine="false" />
+
     </LinearLayout>
 </ScrollView>
