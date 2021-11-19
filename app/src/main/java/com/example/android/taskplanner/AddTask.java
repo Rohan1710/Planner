@@ -25,6 +25,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -73,6 +75,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
     int tyear, tmonth, tday, thour, tminute;
     int status = 1;
 
+
     private static EntityExtractionParams getEntityExtractionParams(String input) {
         return new EntityExtractionParams.Builder(input).build();
     }
@@ -87,6 +90,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                         new EntityExtractorOptions.Builder(EntityExtractorOptions.ENGLISH)
                                 .build());
 
+        thour = tminute = 0;
         input = findViewById(R.id.text_input);
         output = findViewById(R.id.output);
         addTask = findViewById(R.id.add_button);
@@ -157,25 +161,34 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         taskRepeat.setAdapter(adapter);
         taskRepeat.setOnItemSelectedListener(this);
-        input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        input.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                extractEntities(input.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar.set(tyear,tmonth,tday,thour,tminute,0);
+
                 String task = input.getText().toString();
                 if(task.isEmpty()) {
                     Toast.makeText(AddTask.this, R.string.empty_input, Toast.LENGTH_LONG).show();
                     return;
                 }
-                extractEntities(task);
+
 //
+                calendar.set(tyear,tmonth,tday,thour,tminute,0);
                 if (validate()) {
                     if(System.currentTimeMillis()<calendar.getTimeInMillis()) {
                         long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status);
@@ -221,10 +234,68 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                                                 .format(new Date(entity.asDateTimeEntity().getTimestampMillis())));
                                         String tm_time = String.valueOf(DateFormat.getTimeInstance(DateFormat.SHORT)
                                                 .format(new Date(entity.asDateTimeEntity().getTimestampMillis())));
-                                        taskDate.setText(tm_date);
-                                        taskTime.setText(tm_time);
+                                        if(!tm_date.isEmpty()){
+                                            taskDate.setText(tm_date);
+                                        String tmpo = taskDate.getText().toString();
+                                        String syear, smonth, sday;
+                                        syear = smonth = sday = "";
+                                        syear = "20";
+                                        int check = 0;
+                                        for(int i=0;i<tmpo.length();i++){
+                                            if(tmpo.charAt(i) == '/'){
+                                                check++;
+                                                continue;
+                                            }
+                                            if(check == 0){
+                                                sday += tmpo.charAt(i);
+                                            }
+                                            if(check == 1){
+                                                smonth += tmpo.charAt(i);
+                                            }
+                                            if(check == 2){
+                                                syear += tmpo.charAt(i);
+                                            }
+                                        }
+                                        tyear = Integer.parseInt(syear);
+                                        tmonth = Integer.parseInt(smonth);
+                                        tmonth -= 1;
+                                        tday = Integer.parseInt(sday);
 //                                        output.append(tmp);
-//                                        Log.d("Rohan","Output : " +tmp);
+                                        Log.d("Rohan","Output : " +tyear +"/"+ tmonth + tday);
+                                        }
+                                        if(!tm_time.isEmpty()){
+
+                                            taskTime.setText(tm_time);
+                                            String tmpo1 = taskTime.getText().toString();
+                                            String shour, sminute;
+                                            shour = sminute = "";
+                                            int check = 0;
+                                            for(int i=0;i<tm_time.length();i++){
+                                                if(tmpo1.charAt(i) == ':' || tmpo1.charAt(i) == ' '){
+                                                    check++;
+                                                    continue;
+                                                }
+                                                if(check == 0){
+                                                    shour += tmpo1.charAt(i);
+                                                }
+                                                if(check == 1) {
+                                                    sminute += tmpo1.charAt(i);
+                                                }
+                                            }
+
+                                            thour = Integer.parseInt(shour);
+                                            tminute = Integer.parseInt(sminute);
+                                            int ln = tm_time.length();
+                                            if(ln>0 && tm_time.charAt(tm_time.length()-2) == 'p'){
+                                                thour += 12;
+                                            }
+                                            if(ln>0 && tm_time.charAt(tm_time.length()-2) == 'a' && thour == 12){
+                                                thour = 0;
+                                            }
+                                            Log.d("Rohan","Output : " + taskTime.getText().toString());
+                                            Log.d("Rohan","Output : " + tminute+"/" + thour);
+                                        }
+
                                     }
                                 }
                             }
