@@ -68,7 +68,8 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.makeText(HomeActivity.this, "todo list", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.notes:
-                        Toast.makeText(HomeActivity.this, "Notes", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(HomeActivity.this,NotesSection.class);
+                        startActivity(intent);
                         break;
                     case R.id.alarm:
                         Toast.makeText(HomeActivity.this, "alarm", Toast.LENGTH_SHORT).show();
