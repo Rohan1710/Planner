@@ -13,12 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -66,7 +68,7 @@ import java.util.List;
 public class AddTask extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "MainActivityJAVA";
-    Button addTask;
+    Button addTask,checkEmails;
     private EditText input;
     private TextView output;
     private EntityExtractor entityExtractor;
@@ -97,6 +99,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
         taskDate = findViewById(R.id.TaskDate);
         taskTime = findViewById(R.id.TaskTime);
         taskRepeat = findViewById(R.id.TaskRepeat);
+        checkEmails = findViewById(R.id.Emailbutton);
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -205,6 +208,33 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                         Toast.makeText(AddTask.this,"Check Date And Time Again",Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+
+        checkEmails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddTask.this);
+                builder.setTitle("Check Emails");
+                builder.setMessage("Check Emails to shedule meets?");
+                builder.setPositiveButton("CHECK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = Intent.makeMainSelectorActivity(
+                                Intent.ACTION_MAIN,
+                                Intent.CATEGORY_APP_EMAIL);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(Intent.createChooser(intent, "Email"));
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
             }
         });
     }
@@ -367,4 +397,6 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
     public void onNothingSelected(AdapterView<?> adapterView) {
         status = 1;
     }
+
+
 }
