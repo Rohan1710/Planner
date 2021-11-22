@@ -21,6 +21,12 @@
         android:hint="Title"
         android:inputType="text" />
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
 
 </LinearLayout>
