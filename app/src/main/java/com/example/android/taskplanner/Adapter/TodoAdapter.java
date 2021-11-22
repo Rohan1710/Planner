@@ -153,10 +153,20 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
                 @Override
                 public void onClick(View view) {
                     if (checked.isChecked()){
+                        Intent intent = new Intent(context, myAlarm.class);
+                        int intentId = Integer.parseInt(id.getText().toString());
+                        MyDBHandler db = new MyDBHandler(context);
+                        List<String>list = db.DeleteUserData(intentId);
+                        for(int i = 0;i<list.size();i++){
+                            intentId = Integer.parseInt(list.get(i));
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,intentId,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+                            AlarmManager alarmManager =(AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                            alarmManager.cancel(pendingIntent);
+                        }
                         title.setPaintFlags(title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     }
                     else{
-                        title.setPaintFlags(0);
+
                     }
                 }
             });
