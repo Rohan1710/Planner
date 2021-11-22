@@ -72,16 +72,14 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
     private EditText input;
     private TextView output;
     private EntityExtractor entityExtractor;
-    EditText taskDate, taskTime;
-    Spinner taskRepeat;
-    int tyear, tmonth, tday, thour, tminute;
+    EditText taskDate, taskTime,taskEndDate,taskEndtime;
+    Spinner taskRepeat,taskPriority;
+    int tyear, tmonth, tday, thour, tminute,endYear,endMonth,endDay,endhour,endminute;
     int status = 1;
-
-
+    String priority;
     private static EntityExtractionParams getEntityExtractionParams(String input) {
         return new EntityExtractionParams.Builder(input).build();
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +91,8 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                                 .build());
 
         thour = tminute = 0;
+        priority = "Low";
+        endYear = endMonth = endDay = endhour = endminute = -1;
         input = findViewById(R.id.text_input);
         output = findViewById(R.id.output);
         addTask = findViewById(R.id.add_button);
@@ -100,6 +100,9 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
         taskTime = findViewById(R.id.TaskTime);
         taskRepeat = findViewById(R.id.TaskRepeat);
         checkEmails = findViewById(R.id.Emailbutton);
+        taskEndDate = findViewById(R.id.TaskEndDate);
+        taskEndtime = findViewById(R.id.TaskEndTime);
+        taskPriority = findViewById(R.id.TaskPriority);
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -119,6 +122,28 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                             month = month + 1;
                             String date = day + "/" + month + "/" + year;
                             taskDate.setText(date);
+                        }
+                    }, year, month, day);
+                    datePickerDialog.show();
+                } else {
+
+                }
+            }
+        });
+        taskEndDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(
+                            AddTask.this, new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int day) {
+                            endYear = year;
+                            endMonth = month;
+                            endDay = day;
+                            month = month + 1;
+                            String date = day + "/" + month + "/" + year;
+                            taskEndDate.setText(date);
                         }
                     }, year, month, day);
                     datePickerDialog.show();
@@ -160,10 +185,85 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                 }
             }
         });
+        taskEndtime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(
+                            AddTask.this,
+                            android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                            new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourofDay, int minute) {
+                                    endhour = hourofDay;
+                                    endminute = minute;
+                                    String time = endhour + ":" + endminute;
+                                    SimpleDateFormat fdate = new SimpleDateFormat("HH:mm");
+                                    try {
+                                        Date date = fdate.parse(time);
+                                        SimpleDateFormat f12hour = new SimpleDateFormat("hh:mm aa");
+                                        taskEndtime.setText(f12hour.format(date));
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            }, 12, 0, false
+                    );
+                    timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    timePickerDialog.updateTime(endhour, endminute);
+                    timePickerDialog.show();
+                } else {
+
+                }
+            }
+        });
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.numbers,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         taskRepeat.setAdapter(adapter);
-        taskRepeat.setOnItemSelectedListener(this);
+        taskRepeat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 0)
+                    status = 1;
+                else{
+                    if(i == 1)
+                        status = 3600;
+                    if(i == 2)
+                        status = 86400;
+                    if(i == 3)
+                        status = 604800;
+                    if(i == 4)
+                        status = 1209600;
+                    taskEndDate.setVisibility(View.VISIBLE);
+                    taskEndtime.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,R.array.Priority,android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        taskPriority.setAdapter(adapter2);
+        taskPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 0)
+                    priority = "Low";
+                if(i == 1)
+                    priority = "Medium";
+                if(i == 2)
+                    priority = "High";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                    priority = "Low";
+            }
+        });
         input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -194,7 +294,9 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                 calendar.set(tyear,tmonth,tday,thour,tminute,0);
                 if (validate()) {
                     if(System.currentTimeMillis()<calendar.getTimeInMillis()) {
-                        long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status);
+                        Toast.makeText(AddTask.this,tday+"/"+tmonth+"/"+tyear+" "+thour+":"+tminute,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddTask.this,endDay+"/"+endMonth+"/"+endYear+" "+endhour+":"+endminute,Toast.LENGTH_SHORT).show();
+                        long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status,endhour,endminute,priority,endYear,endMonth,endDay,-1);
                         if (id != -1) {
                             int intentId = (int) id;
                            // Toast.makeText(AddTask.this, "value" + year + "/" + month + "/" + day, Toast.LENGTH_LONG).show();
@@ -372,6 +474,14 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
         intent.putExtra("hour",thour);
         intent.putExtra("minute",tminute);
         intent.putExtra("Status",status);
+        intent.putExtra("Priority",priority);
+        intent.putExtra("check",0);
+        intent.putExtra("endHour",endhour);
+        intent.putExtra("endMinute",endminute);
+        intent.putExtra("endYear",endYear);
+        intent.putExtra("endMonth",endMonth);
+        intent.putExtra("endDay",endDay);
+        intent.putExtra("mainTask",-1);
         //Toast.makeText(AddTask.this,"Task Title: "+input.getText().toString(),1).show();
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,id,intent,PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);

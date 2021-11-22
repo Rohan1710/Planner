@@ -1,11 +1,13 @@
 package com.example.android.taskplanner.Adapter;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.example.android.taskplanner.HomeActivity;
 import com.example.android.taskplanner.Model.TodoModel;
 import com.example.android.taskplanner.Model.taskModel;
 import com.example.android.taskplanner.R;
+import com.example.android.taskplanner.SubTask;
 import com.example.android.taskplanner.UpdateTask;
 import com.example.android.taskplanner.myAlarm;
 
@@ -56,6 +59,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
         holder.minute.setText(""+item.getMinute());
         holder.id.setText(""+item.getId());
         holder.status.setText(""+item.getStatus());
+        holder.checked.setChecked(false);
+        holder.priority.setText(""+item.getPriority());
+        holder.repeateEndDay.setText(""+item.getRepeatEndDay());
+        holder.repeateEndMonth.setText(""+item.getRepeatEndMonth());
+        holder.repeateEndYear.setText(""+item.getRepeateEndYear());
+        holder.repeatEndHour.setText(""+item.getRepeatEndHour());
+        holder.repeatEndMinute.setText(""+item.getRepeatEndMinute());
+        holder.maintask.setText(""+item.getMaintask());
     }
 
     public int getItemCount(){
@@ -94,8 +105,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
     };
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title,date,time,id,hour,minute,status;
+        TextView title,date,maintask,time,id,hour,minute,status,priority,repeateEndDay,repeateEndMonth,repeateEndYear,repeatEndHour,repeatEndMinute;
         ImageView delete;
+        CheckBox checked;
         ViewHolder(View view){
             super(view);
             title = view.findViewById(R.id.TaskTitle);
@@ -106,15 +118,46 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
             minute = view.findViewById(R.id.TaskMinute);
             delete = view.findViewById(R.id.deletetaskicon);
             status = view.findViewById(R.id.TaskStatus);
+            checked = view.findViewById(R.id.TaskChecked);
+            priority = view.findViewById(R.id.TaskPriority);
+            repeatEndHour = view.findViewById(R.id.TaskRepeatEndHour);
+            repeatEndMinute = view.findViewById(R.id.TaskRepeatEndMinute);
+            repeateEndYear = view.findViewById(R.id.TaskRepeatEndYear);
+            repeateEndMonth = view.findViewById(R.id.TaskRepeatEndMonth);
+            repeateEndDay = view.findViewById(R.id.TaskRepeatEndDay);
+            maintask = view.findViewById(R.id.mainTask);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, UpdateTask.class);
+                    /*Intent intent = new Intent(context, UpdateTask.class);
                     intent.putExtra("id",id.getText().toString());
                     intent.putExtra("date",date.getText().toString());
                     intent.putExtra("time",time.getText().toString());
                     intent.putExtra("title",title.getText().toString());
+                    context.startActivity(intent);*/
+                    Intent intent = new Intent(context, SubTask.class);
+                    intent.putExtra("id",id.getText().toString());
+                    intent.putExtra("task",title.getText().toString());
+                    intent.putExtra("date",date.getText().toString());
+                    intent.putExtra("Status",status.getText().toString());
+                    intent.putExtra("Priority",priority.getText().toString());
+                    intent.putExtra("endHour",repeatEndHour.getText().toString());
+                    intent.putExtra("endMinute",repeatEndMinute.getText().toString());
+                    intent.putExtra("endYear",repeateEndYear.getText().toString());
+                    intent.putExtra("endMonth",repeateEndMonth.getText().toString());
+                    intent.putExtra("endDay",repeateEndDay.getText().toString());
                     context.startActivity(intent);
+                }
+            });
+            checked.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (checked.isChecked()){
+                        title.setPaintFlags(title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    }
+                    else{
+                        title.setPaintFlags(0);
+                    }
                 }
             });
             delete.setOnClickListener(new View.OnClickListener() {
@@ -128,11 +171,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(context, myAlarm.class);
                             int intentId = Integer.parseInt(id.getText().toString());
-                            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,intentId,intent,PendingIntent.FLAG_CANCEL_CURRENT);
-                            AlarmManager alarmManager =(AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                            alarmManager.cancel(pendingIntent);
                             MyDBHandler db = new MyDBHandler(context);
-                            boolean value = db.DeleteUserData(intentId);
+                            List<String>list = db.DeleteUserData(intentId);
+                            for(int i = 0;i<list.size();i++){
+                                intentId = Integer.parseInt(list.get(i));
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(context,intentId,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+                                AlarmManager alarmManager =(AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                                alarmManager.cancel(pendingIntent);
+                            }
                             Toast.makeText(context,"Task Deleted Successfully",Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
@@ -143,6 +189,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
                             dialog.dismiss();
                         }
                     });
+                    if(!(context instanceof Activity && ((Activity) context).isFinishing()))
                     builder.create().show();
                 }
             });

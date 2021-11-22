@@ -8,10 +8,15 @@
     <string name="time">Time</string>
     <string-array name="numbers">
         <item>Do not repeat</item>
-        <item>Every 15 minutes</item>
-        <item>Every 30 minutes</item>
         <item>Every 1 Hour</item>
         <item>Every Day</item>
+        <item>Every Week</item>
+        <item>Two times a week</item>
+    </string-array>
+    <string-array name="Priority">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
     </string-array>
     <string name="title">Title</string>
     <string name="details">Details</string>

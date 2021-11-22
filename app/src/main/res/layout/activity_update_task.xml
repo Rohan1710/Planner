@@ -105,6 +105,68 @@
                 android:text="Repeat Daily"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></Spinner>
         </LinearLayout>
+        <EditText
+            android:id="@+id/UpdateEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_time"
+            android:drawablePadding="15dp"
+            android:visibility="gone"
+            android:hint="Enter Task End Date"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@null"
+            android:textSize="20sp"></EditText>
+        <EditText
+            android:id="@+id/UpdateEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/input_bg_2"
+            android:drawableStart="@drawable/add_time"
+            android:drawablePadding="15dp"
+            android:visibility="gone"
+            android:hint="Enter Task End Time"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@null"
+            android:textSize="20sp"></EditText>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:text="Priority:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/UpdatePriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Repeat Daily"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></Spinner>
+        </LinearLayout>
 
         <Button
             android:id="@+id/UpdateButton"

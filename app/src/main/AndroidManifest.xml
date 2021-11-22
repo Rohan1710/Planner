@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskPlanner">
         <activity
+            android:name=".AddSubtask"
+            android:exported="false" />
+        <activity
+            android:name=".SubTask"
+            android:exported="false" />
+        <activity
             android:name=".NotesSection"
             android:exported="false" />
         <activity

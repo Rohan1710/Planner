@@ -13,6 +13,12 @@ public class Params {
     public static final String KEY_HOUR ="thour";
     public static final String KEY_MINUTE = "tminute";
     public static final String KEY_STATUS = "status";
-
-
+    public static final String KEY_PRIORITY = "priority";
+    public static final String KEY_CHECK = "check";
+    public static final String KEY_REPEATENDHOUR = "repeatendhour";
+    public static final String KEY_REPEATENDMINUTE = "repeatendminute";
+    public static final String KEY_REPEATENDYEAR = "repeatendyear";
+    public static final String KEY_REPEATENDMONTH = "repeatendmonth";
+    public static final String KEY_REPEATENDDAY = "repeatendday";
+    public static final String KEY_MAINTASK = "maintask";
 }
