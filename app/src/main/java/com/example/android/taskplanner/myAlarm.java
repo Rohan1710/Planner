@@ -48,8 +48,18 @@ public class myAlarm extends BroadcastReceiver {
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(id,builder.build());
-        MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
-        mediaPlayer.start();
+        if(priority.toLowerCase().equals("low")) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
+            mediaPlayer.start();
+        }
+        else if(priority.toLowerCase().equals("medium")) {
+            MediaPlayer mediaPlayer1 = MediaPlayer.create(context, Settings.System.DEFAULT_ALARM_ALERT_URI);
+            mediaPlayer1.start();
+        }
+        else if(priority.toLowerCase().equals("high")) {
+            MediaPlayer mediaPlayer2 = MediaPlayer.create(context, Settings.System.DEFAULT_ALARM_ALERT_URI);
+            mediaPlayer2.start();
+        }
         //Toast.makeText(context,"Alarm ringed "+status,Toast.LENGTH_SHORT).show();
         if(endHour!=-1 && endMinute!=-1 && endYear!=-1 && endDay!=-1 && endMinute!=-1){
             Calendar finalCalender = Calendar.getInstance();

@@ -324,7 +324,6 @@ public class AddSubtask extends AppCompatActivity {
                                             String tmpo = taskDate.getText().toString();
                                             String syear, smonth, sday;
                                             syear = smonth = sday = "";
-                                            syear = "20";
                                             int check = 0;
                                             for(int i=0;i<tmpo.length();i++){
                                                 if(tmpo.charAt(i) == '/'){
