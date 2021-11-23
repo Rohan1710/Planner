@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.android.taskplanner.Adapter.TodoAdapter;
 import com.example.android.taskplanner.Data.MyDBHandler;
+import com.example.android.taskplanner.Data.MyNoteHandler;
 import com.example.android.taskplanner.Model.TodoModel;
 import com.example.android.taskplanner.Model.taskModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -115,6 +116,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
+        MyNoteHandler xyz = new MyNoteHandler(HomeActivity.this);
         List<taskModel> allTask = db.getAllTasks();
         //Toast.makeText(this,"Tasks are " + allTask.size(),Toast.LENGTH_SHORT).show();
         for(taskModel todo : allTask){

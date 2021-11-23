@@ -52,16 +52,15 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
         holder.notetext.setText(item.getNtext());
         holder.date.setText(item.getNdate());
         holder.time.setText(item.getNtime());
-        holder.hour.setText(""+item.getNhour());
-        holder.minute.setText(""+item.getNminute());
         holder.id.setText(""+item.getNid());
     }
 
     public int getItemCount(){
         return noteList.size();
     }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView notetext,date,time,id,hour,minute;
+        TextView notetext,date,time,id;
         ImageView delete;
         ViewHolder(View view){
             super(view);
@@ -69,8 +68,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
             date = view.findViewById(R.id.NoteDate);
             time = view.findViewById(R.id.NoteTime);
             id = view.findViewById(R.id.NoteID);
-            hour = view.findViewById(R.id.Notehour);
-            minute = view.findViewById(R.id.NoteMinute);
             delete = view.findViewById(R.id.deleteNoteIcon);
 
             delete.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +79,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
                     builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(context, myAlarm.class);
                             int intentId = Integer.parseInt(id.getText().toString());
                             MyNoteHandler db = new MyNoteHandler(context);
                             List<String>list = db.DeleteNoteData(intentId);

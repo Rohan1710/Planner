@@ -22,8 +22,7 @@ import java.util.List;
 
 public class MyNoteHandler extends SQLiteOpenHelper {
     public MyNoteHandler(Context context) {
-        super(context, Params.DB_NAME, null, Params.DB_VERSION);
-
+        super(context, ParamsNotes.DB1_NAME, null, ParamsNotes.DB1_VERSION);
     }
 
     @Override
@@ -31,14 +30,10 @@ public class MyNoteHandler extends SQLiteOpenHelper {
         String create = " CREATE TABLE " + ParamsNotes.NOTE_TABLE_NAME + " (" +
                 ParamsNotes.KEY_NOTE_ID + " INTEGER PRIMARY KEY, " +
                 ParamsNotes.KEY_NOTE_TASK + " TEXT NOT NULL, " +
-                ParamsNotes.KEY_NOTE_DAY + " INTEGER NOT NULL, " +
-                ParamsNotes.KEY_NOTE_MONTH + " INTEGER NOT NULL, " +
-                ParamsNotes.KEY_NOTE_YEAR + " INTEGER NOT NULL, " +
-                ParamsNotes.KEY_NOTE_HOUR + " INTEGER NOT NULL, " +
-                ParamsNotes.KEY_NOTE_MINUTE + " INTEGER NOT NULL);";
+                ParamsNotes.KEY_NOTE_DATE+ " TEXT NOT NULL, " +
+                ParamsNotes.KEY_NOTE_TIME + " TEXT NOT NULL);";
         Log.d("dbrohan","query being run is "+ create);
         db.execSQL(create);
-
     }
 
     @Override
@@ -48,27 +43,22 @@ public class MyNoteHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertNoteData(String note,int year,int month,int day,int hour,int minute){
+    public long insertNoteData(String note,String date, String time){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ParamsNotes.KEY_NOTE_TASK,note);
-        values.put(ParamsNotes.KEY_NOTE_YEAR,year);
-        values.put(ParamsNotes.KEY_NOTE_MONTH,month);
-        values.put(ParamsNotes.KEY_NOTE_DAY,day);
-        values.put(ParamsNotes.KEY_NOTE_HOUR,hour);
-        values.put(ParamsNotes.KEY_NOTE_MINUTE,minute);
+        values.put(ParamsNotes.KEY_NOTE_DATE,date);
+        values.put(ParamsNotes.KEY_NOTE_TIME,time);
         long result = db.insert(ParamsNotes.NOTE_TABLE_NAME,null,values);
+        Log.d("dbrohan","Added to database");
         return result;
     }
-    public boolean UpdateNoteData(int id,String note,int year,int month,int day,int hour,int minute){
+    public boolean UpdateNoteData(int id,String note,String date, String time){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ParamsNotes.KEY_NOTE_TASK,note);
-        values.put(ParamsNotes.KEY_NOTE_YEAR,year);
-        values.put(ParamsNotes.KEY_NOTE_MONTH,month);
-        values.put(ParamsNotes.KEY_NOTE_DAY,day);
-        values.put(ParamsNotes.KEY_NOTE_HOUR,hour);
-        values.put(ParamsNotes.KEY_NOTE_MINUTE,minute);
+        values.put(ParamsNotes.KEY_NOTE_DATE,date);
+        values.put(ParamsNotes.KEY_NOTE_TIME,time);
         int result = db.update(ParamsNotes.NOTE_TABLE_NAME, values, ParamsNotes.KEY_NOTE_ID + "=?",
                 new String[]{String.valueOf(id)});
         if(result == -1)
@@ -146,11 +136,8 @@ public class MyNoteHandler extends SQLiteOpenHelper {
                 int id = (cursor.getInt(0));
                 //task.setId(Integer.parseInt(cursor.getString(0)));
                 String note = (cursor.getString(1));
-                int day = (cursor.getInt(2));
-                int month = (cursor.getInt(3));
-                int year = (cursor.getInt(4));
-                int hour = (cursor.getInt(5));
-                int minute = (cursor.getInt(6));
+                String date = (cursor.getString(2));
+                String time = (cursor.getString(3));
                 noteList.add(task);
             }while (cursor.moveToNext());
         }
