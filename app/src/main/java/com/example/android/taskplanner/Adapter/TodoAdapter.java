@@ -151,6 +151,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
                     intent.putExtra("id",id.getText().toString());
                     intent.putExtra("task",title.getText().toString());
                     intent.putExtra("date",date.getText().toString());
+                    intent.putExtra("time",time.getText().toString());
                     intent.putExtra("Status",status.getText().toString());
                     intent.putExtra("Priority",priority.getText().toString());
                     intent.putExtra("endHour",repeatEndHour.getText().toString());

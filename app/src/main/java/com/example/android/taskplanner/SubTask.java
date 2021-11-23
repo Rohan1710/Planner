@@ -21,7 +21,7 @@ import java.util.List;
 public class SubTask extends AppCompatActivity {
     TextView taskTitle;
     RecyclerView taskRecyclerView;
-    Button addSubtask;
+    Button addSubtask,updatetask;
     private subtaskAdapter taskAdapter;
     private List<taskModel> taskList;
     @Override
@@ -31,6 +31,7 @@ public class SubTask extends AppCompatActivity {
         taskTitle = findViewById(R.id.TaskNametitle);
         taskRecyclerView = findViewById(R.id.subtaskList);
         addSubtask = findViewById(R.id.AddSub);
+        updatetask = findViewById(R.id.UpdateTask);
         String val = getIntent().getStringExtra("id");
         int id = Integer.parseInt(val);
         String task = getIntent().getStringExtra("task");
@@ -55,6 +56,17 @@ public class SubTask extends AppCompatActivity {
                     Intent intent = new Intent(SubTask.this,AddSubtask.class);
                 intent.putExtra("id",id);
                 intent.putExtra("task",task);
+                startActivity(intent);
+            }
+        });
+        updatetask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SubTask.this,UpdateTask.class);
+                intent.putExtra("id",getIntent().getStringExtra("id"));
+                intent.putExtra("title",getIntent().getStringExtra("task"));
+                intent.putExtra("date",getIntent().getStringExtra("date"));
+                intent.putExtra("time",getIntent().getStringExtra("time"));
                 startActivity(intent);
             }
         });

@@ -196,7 +196,7 @@ public class myAlarm extends BroadcastReceiver {
                     }
                 }
             }
-            Toast.makeText(context,day+"/"+month+"/"+year,Toast.LENGTH_SHORT).show();
+           // Toast.makeText(context,day+"/"+month+"/"+year,Toast.LENGTH_SHORT).show();
             intent1.putExtra("id",id);
             intent1.putExtra("task",task);
             intent1.putExtra("day",day);

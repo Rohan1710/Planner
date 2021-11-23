@@ -294,8 +294,8 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                 calendar.set(tyear,tmonth,tday,thour,tminute,0);
                 if (validate()) {
                     if(System.currentTimeMillis()<calendar.getTimeInMillis()) {
-                        Toast.makeText(AddTask.this,tday+"/"+tmonth+"/"+tyear+" "+thour+":"+tminute,Toast.LENGTH_SHORT).show();
-                        Toast.makeText(AddTask.this,endDay+"/"+endMonth+"/"+endYear+" "+endhour+":"+endminute,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AddTask.this,tday+"/"+tmonth+"/"+tyear+" "+thour+":"+tminute,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AddTask.this,endDay+"/"+endMonth+"/"+endYear+" "+endhour+":"+endminute,Toast.LENGTH_SHORT).show();
                         long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status,endhour,endminute,priority,endYear,endMonth,endDay,-1);
                         if (id != -1) {
                             int intentId = (int) id;
