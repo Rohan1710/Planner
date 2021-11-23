@@ -65,9 +65,9 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.home:
                         Toast.makeText(HomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.todolist:
+                    /*case R.id.todolist:
                         Toast.makeText(HomeActivity.this, "todo list", Toast.LENGTH_SHORT).show();
-                        break;
+                        break;*/
                     case R.id.notes:
                         Intent intent = new Intent(HomeActivity.this,NotesSection.class);
                         startActivity(intent);
@@ -108,15 +108,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
-//        taskList.add(task);
-//        taskList.add(task);
-//        taskList.add(task);
-
-
-
         MyDBHandler db = new MyDBHandler(HomeActivity.this);
-        MyNoteHandler xyz = new MyNoteHandler(HomeActivity.this);
         List<taskModel> allTask = db.getAllTasks();
         //Toast.makeText(this,"Tasks are " + allTask.size(),Toast.LENGTH_SHORT).show();
         for(taskModel todo : allTask){

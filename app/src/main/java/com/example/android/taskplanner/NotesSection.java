@@ -59,7 +59,7 @@ public class NotesSection extends AppCompatActivity {
                 ntime = dateFormat.format(calendar.getTime());
 
                 long rpb = db.insertNoteData(notetext,ndate, ntime);
-                Toast.makeText(NotesSection.this, "New Note Added" + ndate + "-" + ntime + "-" + notetext, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NotesSection.this, "New Note Added", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,19 +71,17 @@ public class NotesSection extends AppCompatActivity {
         notesRecyclerView.setHasFixedSize(true);
 
 
-       /* List<NoteModel> allNotes = db.getAllNotes();
+        List<NoteModel> allNotes = db.getAllNotes();
         Log.d("dbrohan", "all notes" + allNotes.size());
         for(NoteModel tmp : allNotes){
             noteList.add(tmp);
-        }*/
+        }
 
-        noteList = db.getAllNotes();
         Log.d("dbrohan", "all notes" + noteList.size());
 
         notesAdapter = new NotesAdapter(noteList,NotesSection.this);
 
         if(noteList.size()>=1)
             notesRecyclerView.setAdapter(notesAdapter);
-//        notesAdapter.getFilter().filter(simpleDateFormat);
     }
 }

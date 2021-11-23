@@ -138,6 +138,10 @@ public class MyNoteHandler extends SQLiteOpenHelper {
                 String note = (cursor.getString(1));
                 String date = (cursor.getString(2));
                 String time = (cursor.getString(3));
+                task.setNid(id);
+                task.setNtext(note);
+                task.setNdate(date);
+                task.setNtime(time);
                 noteList.add(task);
             }while (cursor.moveToNext());
         }
