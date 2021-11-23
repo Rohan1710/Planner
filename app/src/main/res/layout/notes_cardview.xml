@@ -30,11 +30,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp">
                 <TextView
-                    android:id="@+id/TaskTitle"
+                    android:id="@+id/NoteContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="This is Just a Sample"
+                    android:text="This is Just a Sample Note"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
@@ -45,7 +45,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/taskDate"
+                    android:id="@+id/NoteDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -54,7 +54,7 @@
                     android:textColor="@color/colorPrimary"></TextView>
 
                 <TextView
-                    android:id="@+id/taskTime"
+                    android:id="@+id/NoteTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -67,7 +67,7 @@
 
 
         <ImageView
-            android:id="@+id/deletetaskicon"
+            android:id="@+id/deleteNoteIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
@@ -75,6 +75,22 @@
             android:layout_marginRight="5dp"
             android:padding="4dp"
             android:src="@drawable/icon_delete" />
+
+        <TextView
+            android:id="@+id/NoteID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/Notehour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/NoteMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
