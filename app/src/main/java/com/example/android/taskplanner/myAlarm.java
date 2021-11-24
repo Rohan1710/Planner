@@ -60,6 +60,7 @@ public class myAlarm extends BroadcastReceiver {
             MediaPlayer mediaPlayer2 = MediaPlayer.create(context, Settings.System.DEFAULT_ALARM_ALERT_URI);
             mediaPlayer2.start();
         }
+        boolean check = false;
         //Toast.makeText(context,"Alarm ringed "+status,Toast.LENGTH_SHORT).show();
         if(endHour!=-1 && endMinute!=-1 && endYear!=-1 && endDay!=-1 && endMinute!=-1){
             Calendar finalCalender = Calendar.getInstance();
@@ -67,6 +68,7 @@ public class myAlarm extends BroadcastReceiver {
             Calendar currCalender = Calendar.getInstance();
             currCalender.set(year,month,day,hour,minute,0);
             if(currCalender.getTimeInMillis()>=finalCalender.getTimeInMillis()){
+                check = true;
                 MyDBHandler db = new MyDBHandler(context);
                 List<String>list = db.DeleteUserData(id);
                 for(int i = 0;i<list.size();i++)
@@ -90,7 +92,7 @@ public class myAlarm extends BroadcastReceiver {
             }
             //Toast.makeText(context,"Task Deleted " + value,Toast.LENGTH_SHORT).show();
         }
-        else {
+        else if(check == false){
             MyDBHandler db = new MyDBHandler(context);
             Intent intent1 = new Intent(context, myAlarm.class);
             long time = (long)status;
