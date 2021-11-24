@@ -9,39 +9,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/TaskNametitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:text="Task Name"
-            android:id="@+id/TaskNametitle"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"></TextView>
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
+
         <Button
             android:id="@+id/UpdateTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update Task"
             android:layout_gravity="end"
-            android:layout_marginRight="10dp"></Button>
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:text="Update Task"></Button>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SubTasks"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"></TextView>
+            android:text="SubTasks"
+            android:textSize="16sp"
+            android:textStyle="bold"></TextView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/subtaskList"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"></androidx.recyclerview.widget.RecyclerView>
+
         <Button
             android:id="@+id/AddSub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Subtask"
             android:layout_gravity="end"
-            android:layout_marginRight="10dp"></Button>
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:text="Add Subtask"></Button>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

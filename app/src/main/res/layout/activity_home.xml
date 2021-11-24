@@ -42,7 +42,7 @@
 
             <CalendarView
                 android:id="@+id/calenderView"
-                android:layout_width="328dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
 
         </androidx.cardview.widget.CardView>
@@ -63,8 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginTop="5dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
     </LinearLayout>
 
