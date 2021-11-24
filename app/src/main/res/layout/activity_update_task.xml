@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="serif"
             android:text="@string/update_task_activity"
             android:textColor="@color/colorPrimary"
@@ -41,8 +41,8 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:padding="15dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorText"
             android:textSize="20sp" />
 
         <EditText
@@ -57,8 +57,8 @@
             android:drawablePadding="15dp"
             android:hint="Enter Date"
             android:padding="15dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorText"
             android:textSize="20sp"></EditText>
 
         <EditText
@@ -73,8 +73,8 @@
             android:drawablePadding="15dp"
             android:hint="Enter Time"
             android:padding="15dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorText"
             android:textSize="20sp"></EditText>
 
         <LinearLayout

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.android.taskplanner.Adapter.TodoAdapter;
 import com.example.android.taskplanner.Data.MyDBHandler;
+import com.example.android.taskplanner.Data.MyNoteHandler;
 import com.example.android.taskplanner.Model.TodoModel;
 import com.example.android.taskplanner.Model.taskModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -64,9 +65,9 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.home:
                         Toast.makeText(HomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.todolist:
+                    /*case R.id.todolist:
                         Toast.makeText(HomeActivity.this, "todo list", Toast.LENGTH_SHORT).show();
-                        break;
+                        break;*/
                     case R.id.notes:
                         Intent intent = new Intent(HomeActivity.this,NotesSection.class);
                         startActivity(intent);
@@ -104,13 +105,6 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(manager);
         taskRecyclerView.setHasFixedSize(true);
-
-
-
-
-//        taskList.add(task);
-//        taskList.add(task);
-//        taskList.add(task);
 
 
 

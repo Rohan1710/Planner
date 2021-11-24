@@ -20,23 +20,24 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="60dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/TaskTitle"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/NoteContent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="This is Just a Sample"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"></TextView>
+                    android:text="This is Just a Sample Note"
+                    android:textColor="@color/colorText"
+                    android:textSize="20sp"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -45,36 +46,54 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/taskDate"
+                    android:id="@+id/NoteDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="5dp"
                     android:text="Date"
-                    android:textColor="@color/colorPrimary"></TextView>
+                    android:textColor="@color/colorText"
+                    android:textStyle="bold"></TextView>
 
                 <TextView
-                    android:id="@+id/taskTime"
+                    android:id="@+id/NoteTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="5dp"
                     android:text="Time"
-                    android:textColor="@color/colorPrimary"></TextView>
+                    android:textColor="@color/colorText"
+                    android:textStyle="bold"></TextView>
             </LinearLayout>
 
         </LinearLayout>
 
 
         <ImageView
-            android:id="@+id/deletetaskicon"
+            android:id="@+id/deleteNoteIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="5dp"
             android:padding="4dp"
             android:src="@drawable/icon_delete" />
+
+        <TextView
+            android:id="@+id/NoteID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/Notehour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/NoteMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

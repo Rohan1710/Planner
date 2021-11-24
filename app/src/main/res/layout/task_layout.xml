@@ -10,7 +10,7 @@
     android:layout_marginVertical="8dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
@@ -20,43 +20,46 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="60dp"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
                 <CheckBox
+                    android:id="@+id/TaskChecked"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/TaskChecked"
                     android:layout_marginLeft="5dp"></CheckBox>
+
                 <TextView
                     android:id="@+id/TaskTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="This is Just a Sample"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorText"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/taskDate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="5dp"
                     android:text="Date"
-                    android:textColor="@color/colorPrimary"></TextView>
+                    android:textColor="@color/colorText"></TextView>
 
                 <TextView
                     android:id="@+id/taskTime"
@@ -65,7 +68,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="5dp"
                     android:text="Time"
-                    android:textColor="@color/colorPrimary"></TextView>
+                    android:textColor="@color/colorText"></TextView>
             </LinearLayout>
 
         </LinearLayout>
@@ -75,8 +78,9 @@
             android:id="@+id/deletetaskicon"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="5dp"
             android:padding="4dp"
             android:src="@drawable/icon_delete" />
@@ -85,56 +89,66 @@
             android:id="@+id/TaskID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/Taskhour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/TaskMinute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/TaskStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/TaskPriority"
-            android:visibility="gone"></TextView>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"></TextView>
+
+        <TextView
             android:id="@+id/TaskRepeatEndHour"
-            android:visibility="gone"></TextView>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"></TextView>
+
+        <TextView
             android:id="@+id/TaskRepeatEndMinute"
-            android:visibility="gone"></TextView>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"></TextView>
+
+        <TextView
             android:id="@+id/TaskRepeatEndYear"
-            android:visibility="gone"></TextView>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"></TextView>
+
+        <TextView
             android:id="@+id/TaskRepeatEndMonth"
-            android:visibility="gone"></TextView>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"></TextView>
+
+        <TextView
             android:id="@+id/TaskRepeatEndDay"
-            android:visibility="gone"></TextView>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"></TextView>
+
+        <TextView
             android:id="@+id/mainTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="gone"></TextView>
     </RelativeLayout>
 

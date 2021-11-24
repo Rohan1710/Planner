@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="serif"
             android:text="Enter Subtask"
             android:textColor="@color/colorPrimary"
@@ -40,8 +40,8 @@
             android:hint="Enter Task"
             android:inputType="text"
             android:padding="15dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorText"
             android:textCursorDrawable="@null"
             android:textSize="20sp" />
 
@@ -57,8 +57,8 @@
             android:drawablePadding="15dp"
             android:hint="Enter Date"
             android:padding="15dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorText"
             android:textCursorDrawable="@null"
             android:textSize="20sp"></EditText>
 
@@ -74,8 +74,8 @@
             android:drawablePadding="15dp"
             android:hint="Enter Time"
             android:padding="15dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorText"
             android:textCursorDrawable="@null"
             android:textSize="20sp"></EditText>
 
