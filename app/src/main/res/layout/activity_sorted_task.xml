@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".SortedTask">
     <LinearLayout
         android:layout_height="match_parent"
@@ -16,6 +17,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="All Tasks"
+            android:fontFamily="serif"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
