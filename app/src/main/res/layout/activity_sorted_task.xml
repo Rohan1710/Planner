@@ -6,28 +6,34 @@
     android:layout_height="match_parent"
 
     tools:context=".SortedTask">
+
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/EveryTasks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="All Tasks"
             android:fontFamily="serif"
+            android:text="All Tasks"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/everyTaskList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_marginTop="25dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"></androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

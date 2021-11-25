@@ -30,6 +30,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -114,6 +115,7 @@ public class HomeActivity extends AppCompatActivity {
         for(taskModel todo : allTask){
             taskList.add(todo);
         }
+        Collections.sort(taskList,new callsComparator());
         taskAdapter = new TodoAdapter(taskList,HomeActivity.this);
         if(taskList.size()>=1)
             taskRecyclerView.setAdapter(taskAdapter);

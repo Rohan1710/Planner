@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView registerUser;
+    private TextView registerUser, login;
     private EditText editTextFullName,editTextAge,editTextEmail,editTextPassword;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -37,6 +37,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        login = findViewById(R.id.login_register);
+        login.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +47,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             case R.id.registerUser:
                 registerUser();
                 break;
+            case R.id.login_register:
+                startActivity(new Intent(RegisterUser.this, MainActivity.class));
         }
     }
 
