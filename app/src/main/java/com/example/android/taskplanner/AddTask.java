@@ -372,6 +372,7 @@ public class AddTask extends AppCompatActivity implements AdapterView.OnItemSele
                                         String syear, smonth, sday;
                                         syear = smonth = sday = "";
                                         int check = 0;
+                                        syear = "20";
                                         for(int i=0;i<tmpo.length();i++){
                                             if(tmpo.charAt(i) == '/'){
                                                 check++;
