@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/alarm"
-        android:icon="@drawable/ic_alarm"
-        android:title="Alarm" />
+        android:icon="@drawable/ic_todolist"
+        android:title="Todo List" />
 
 </menu>
