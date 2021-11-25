@@ -73,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.alarm:
-                        Toast.makeText(HomeActivity.this, "alarm", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeActivity.this,SortedTask.class));
                         break;
                 }
                 return true;

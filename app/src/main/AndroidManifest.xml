@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskPlanner">
         <activity
+            android:name=".SortedTask"
+            android:exported="false" />
+        <activity
             android:name=".AddSubtask"
             android:exported="false" />
         <activity

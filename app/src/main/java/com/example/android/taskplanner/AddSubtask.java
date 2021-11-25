@@ -274,8 +274,8 @@ public class AddSubtask extends AppCompatActivity {
                 calendar.set(tyear,tmonth,tday,thour,tminute,0);
                 if (validate()) {
                     if(System.currentTimeMillis()<calendar.getTimeInMillis()) {
-                        Toast.makeText(AddSubtask.this,tday+"/"+tmonth+"/"+tyear+" "+thour+":"+tminute,Toast.LENGTH_SHORT).show();
-                        Toast.makeText(AddSubtask.this,endDay+"/"+endMonth+"/"+endYear+" "+endhour+":"+endminute,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AddSubtask.this,tday+"/"+tmonth+"/"+tyear+" "+thour+":"+tminute,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AddSubtask.this,endDay+"/"+endMonth+"/"+endYear+" "+endhour+":"+endminute,Toast.LENGTH_SHORT).show();
                         long id = db.insertUserData(task, tyear, tmonth + 1, tday, thour, tminute, status,endhour,endminute,priority,endYear,endMonth,endDay,mainTask);
                         if (id != -1) {
                             int intentId = (int) id;

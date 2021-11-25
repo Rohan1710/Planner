@@ -312,6 +312,65 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
         return taskList;
     }
+    public List<taskModel> getEveryTasks(){
+        List<taskModel> taskList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String select = "SELECT * FROM " + Params.TABLE_NAME;
+        Cursor cursor = db.rawQuery(select,null);
+
+        if(cursor.moveToFirst()){
+            do{
+                taskModel task = new taskModel();
+                int id = (cursor.getInt(0));
+                //task.setId(Integer.parseInt(cursor.getString(0)));
+                String title = (cursor.getString(1));
+                int day = (cursor.getInt(2));
+                int month = (cursor.getInt(3));
+                int year = (cursor.getInt(4));
+                int hour = (cursor.getInt(5));
+                int minute = (cursor.getInt(6));
+                int status = (cursor.getInt(7));
+                String priority = cursor.getString(8);
+                int repeatEndHour = cursor.getInt(9);
+                int repeateEndMinute = cursor.getInt(10);
+                int repeateEndYear = cursor.getInt(11);
+                int repeateEndMonth = cursor.getInt(12);
+                int repeateEndDay = cursor.getInt(13);
+                int mainTask = cursor.getInt(14);
+                if(true) {
+                    String date = day + "/" + month + "/" + year;
+                    String time = "";
+                    if (hour / 10 == 0) {
+                        time += "0";
+                    }
+                    time += hour + ":";
+                    if (minute / 10 == 0) {
+                        time += "0";
+                    }
+                    time += minute;
+                    task.setId(id);
+                    task.setStatus(status);
+                    task.setDate(date);
+                    task.setHour(hour);
+                    task.setMinute(minute);
+                    task.setTime(time);
+                    task.setDate(date);
+                    task.setTitle(title);
+                    task.setRepeatEndHour(repeatEndHour);
+                    task.setRepeatEndMinute(repeateEndMinute);
+                    task.setPriority(priority);
+                    task.setRepeateEndYear(repeateEndYear);
+                    task.setRepeatEndMonth(repeateEndMonth);
+                    task.setRepeatEndDay(repeateEndDay);
+                    task.setMaintask(-1);
+                    //task.setStatus(Integer.parseInt(cursor.getString(3)));
+                    taskList.add(task);
+                }
+            }while (cursor.moveToNext());
+        }
+        return taskList;
+    }
     public int updateTask(TodoModel todoModel){
         SQLiteDatabase db = this.getWritableDatabase();
 
